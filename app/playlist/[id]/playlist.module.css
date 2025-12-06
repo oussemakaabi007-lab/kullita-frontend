@@ -1,0 +1,182 @@
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    padding: 40px; 
+    flex: 1;
+    overflow-y: auto; 
+    /* Primary Dark Background */
+    background-color: rgba(18, 18, 18, 0.47); 
+    /* Default Text Color */
+    color: #ffffff; 
+    transition: margin-left 0.3s;
+}
+
+/* ------------------------------------------------ */
+/* 2. Profile Card and Image Section */
+/* ------------------------------------------------ */
+.profileHeader {
+    margin-bottom: 30px;
+    /* Darker Divider/Border */
+    border-bottom: 2px solid #444444; 
+    padding-bottom: 10px;
+    color: #ffffff;
+}
+
+.profileCard {
+    display: flex;
+    align-items: center;
+    gap: 40px; 
+    padding: 30px; 
+    /* Secondary Dark Background for Cards */
+    background-color: #282828; 
+    border-radius: 12px;
+    /* Adjusted shadow for dark backgrounds */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
+}
+
+.imageSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardImageContainer {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    /* Accent color ring (#be00b8) with card background color (#282828) */
+    box-shadow: 0 0 0 5px #be00b87e, 0 0 0 8px #282828; 
+    flex-shrink: 0;
+}
+
+.photoEditBtn {
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: #be00b8; /* Accent color */
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.photoEditBtn:hover {
+    background-color: #a3009c;
+}
+
+/* ------------------------------------------------ */
+/* 3. Editable Fields and User Info */
+/* ------------------------------------------------ */
+.infoSection {
+    flex-grow: 1;
+}
+
+.usernameDisplay {
+    font-size: 2rem;
+    margin: 0;
+    color: #ffffff;
+}
+
+.editableField {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.fieldLabel {
+    font-weight: bold;
+    color: #bbbbbb; /* Dimmer secondary text */
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.fieldDisplay {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #ffffff;
+    flex-grow: 1;
+}
+
+.fieldInput {
+    padding: 8px;
+    background-color: #333333; /* Darker input background */
+    color: #ffffff;
+    border: 1px solid #444444; /* Darker border */
+    border-radius: 4px;
+    font-size: 1.1rem;
+    flex-grow: 1;
+}
+
+.editButton {
+    background-color: #007bff; /* Blue */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.saveButton {
+    background-color: #28a745; /* Green */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.cancelButton {
+    background-color: #dc3545; /* Red */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* ------------------------------------------------ */
+/* 4. Favorites List Section */
+/* ------------------------------------------------ */
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: #444444; 
+    margin: 40px 0;
+}
+
+.favoritesSection h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.favoritesList {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.favoriteItem {
+    padding: 15px;
+    /* Secondary Dark Background for list items */
+    background-color: #282828; 
+    border-left: 5px solid #be00b8; /* Accent color strip */
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.emptyState {
+    color: #bbbbbb;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
