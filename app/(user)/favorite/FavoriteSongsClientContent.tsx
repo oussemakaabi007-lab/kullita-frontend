@@ -50,7 +50,9 @@ export default function FavoriteSongsClientContent({ songs: initialSongs ,userna
         </div>
       </header>
       <div className={styles.controls}>
-        <button onClick={() => onPlay(songs[0])} className={styles.playBtn}>
+        <button onClick={() =>{ if(songs.length>0) {onPlay(songs[0])}
+
+         } } className={styles.playBtn}>
           <Play fill="white" />
         </button>
         <Heart className={styles.activeHeart} fill="currentColor" />
