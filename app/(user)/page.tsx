@@ -138,7 +138,7 @@ export default function HomePage() {
         <section key={section.id} className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>{section.title}</h2>
-          <button className={styles.showAllBtn} onClick={()=>{section.id=="recent" ? router.push('/recent') : router.push('/trending')}}>
+          <button className={styles.showAllBtn} onClick={()=>{section.id=="recent" ? router.push('/recent') :(section.id=="trending"?router.push('/trending'):router.push('/this-week'))}}>
           Show all
           </button>
         </div>

@@ -55,7 +55,7 @@ function MenuArtist() {
     { loading && (
         <div className={styles.miniLoader}>
           <Loader2 className="animate-spin" size={24} />
-          <span>Loading songs...</span>
+          <span>Loging out...</span>
         </div>
       )}
       <button onClick={handleLogout} className={styles.logoutBtn}>
