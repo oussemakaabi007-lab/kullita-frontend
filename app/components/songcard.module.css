@@ -1,59 +1,162 @@
-
 .card {
-  min-width: 200px;
-  max-width: 250px;
-  height: 300px; 
+  
+  --card-width: 200px;
+  --card-height: 200px;
+  
+  width: var(--card-width);
+  height: var(--card-height);
   border-radius: 12px;
-  background-color: #1e1e1e;
+  position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 0.5s ease;
+}
+
+.scrim {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  background: linear-gradient(
+    to top, 
+    rgba(0,0,0,0.9) 0%, 
+    rgba(0,0,0,0.4) 40%, 
+    transparent 100%
+  );
+  z-index: 2;
+}
+
+.cardContent {
+  position: relative;
+  height: 100%;
+  z-index: 3;
   display: flex;
-  flex-direction: column; 
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
-}
-
-.cardImageContainer {
-    width: 100%;
-    height: 70%;
-    position: relative;
-    border-radius: 12px 12px 0 0;
-    overflow: hidden;
-}
-.cardImage {
-    object-fit: cover;
-}
-.cardInfo {
-    flex-grow: 1; 
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    color: white;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
 }
 
 .songTitle {
-    font-size: 1.1rem;
-    margin: 0;
-    text-align: center;
+  margin: 0;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .artistName {
-    font-size: 0.9rem;
-    color: #bbb;
-    margin: 5px 0 0 0;
-    text-align: center;
+  margin: 2px 0 0 0;
+  color: #ccc;
+  font-size: 0.85rem;
 }
 
-@media (min-width: 600px) {
-  .card {
-    max-width: 300px;
-    height: 350px;
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-8px);
+  }
+  .card:hover .backgroundImage {
+    transform: scale(1.1);
+  }
+  .playIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #ce006a;
+    transform: translate(-50%, -100%); 
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  .card:hover .playIcon {
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
 }
+
+@media (max-width: 650px) {
+  .card {
+    
+    --card-width: 100%; 
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+  }
+
+  .cardContent {
+    padding: 12px;
+  }
+
+  .songTitle {
+    font-size: 0.95rem;
+  }
+
+  .playIcon {
+    display: none; 
+  }
+}
+
+
+.eqContainer {
+  display: flex;
+  gap: 3px;
+  height: 20px;
+  margin-bottom: 8px;
+}
+.box {
+  width: 3px;
+  height: 100%;
+  background: #be00b8;
+  border-radius: 1px;
+  transform-origin: bottom;
+  animation: normal 1.2s infinite;
+}
+
+@keyframes quiet {
+  0%   { transform: scaleY(0.2); }
+  50%  { transform: scaleY(0.4); }
+  100% { transform: scaleY(0.2); }
+}
+
+@keyframes normal {
+  0%   { transform: scaleY(0.4); }
+  50%  { transform: scaleY(0.8); }
+  100% { transform: scaleY(0.4); }
+}
+
+@keyframes loud {
+  0%   { transform: scaleY(0.4); }
+  50%  { transform: scaleY(1.2); }
+  100% { transform: scaleY(0.4); }
+}
+
+
+
+
+
+.box {
+  width: 4px;
+  height: 100%;
+  background: var(--color-accent-primary, #be00b8);
+  border-radius: 2px;
+  transform-origin: bottom; 
+  transition: background 0.3s ease;
+}
+
+.box1 { animation: quiet 0.8s ease-in-out infinite; }
+.box2 { animation: normal 1.0s ease-in-out infinite; }
+.box3 { animation: quiet 1.2s ease-in-out infinite; }
+.box4 { animation: loud 0.9s ease-in-out infinite; }
+.box5 { animation: normal 1.1s ease-in-out infinite; }

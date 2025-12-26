@@ -1,0 +1,496 @@
+.appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu main";
+    grid-template-columns: 230px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+@media (max-width: 650px) {
+ .appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu" "main";
+    grid-template-rows: 60px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.menuContainer {
+     grid-area: menu;
+}
+.mainContent {
+   width: 100vw;
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    
+}
+}
+.mainContent::-webkit-scrollbar{
+    display: none;
+}
+
+.mainContent {
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    position: relative;
+    scrollbar-width: 0;
+}
+.contentPadding {
+    padding: 32px 32px 100px 32px; 
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+}
+.contentPadding {
+    padding: 0px; 
+}
+.container {
+  flex: 1;
+  overflow-y: auto;
+ 
+  color: white;
+}
+
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.header {
+  background: linear-gradient(to bottom, #f72096, #121212);
+  padding: 2rem;
+}
+
+.headerTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.content {
+  padding: 1.5rem 2rem;
+}
+
+.grid {
+  display: grid;
+  /* auto-fill: Adds as many columns as will fit.
+     minmax(180px, 1fr): Each card is at least 180px wide. 
+     If there's extra space, they grow to fill it (1fr).
+  */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+.header {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 32px;
+  background: linear-gradient(to bottom, #e200ad, #121212);
+}
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+}
+.coverArt {
+  width: 240px;
+  height: 240px;
+  background: linear-gradient(to bottom, #d11683, #540c38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 60px rgba(0,0,0,.5);
+}
+.createCard {
+  background-color: #0b0b0b;
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  
+  width: 100%; 
+  box-sizing: border-box; 
+  
+  
+  aspect-ratio: 1 / 1; 
+  
+  transition: background-color 0.3s ease;
+  overflow: hidden; 
+}
+
+
+.createCard h3 {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: clamp(0.8rem, 2vw, 1rem); 
+  text-align: center;
+}
+
+.createCard:hover {
+  background-color: #282828;
+}
+
+.plusIconWrapper {
+  width: 4rem;
+  height: 4rem;
+  background-color: #282828;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #b3b3b3;
+  transition: background-color 0.3s ease;
+}
+
+.createCard:hover .plusIconWrapper {
+  background-color: #383838;
+}
+
+.cardTitle {
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.cardSubtitle {
+  font-size: 0.875rem;
+  color: #b3b3b3;
+  text-align: center;
+}
+
+
+@media (max-width: 650px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .coverArt {
+    width: 160px; 
+    height: 160px;
+  }
+
+  .title {
+    font-size: 2rem; 
+    margin-bottom: 8px;
+  }
+
+  .headerTitle {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .header {
+    padding: 1.5rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .grid {
+    
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .createCard {
+    padding: 1rem;
+  }
+
+  .plusIconWrapper {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .cardTitle {
+    font-size: 0.9rem;
+  }
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000; 
+  padding: 20px;
+}
+
+
+.modalContent {
+  background-color: #282828;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  animation: modalPop 0.2s ease-out;
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modalHeader h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  cursor: pointer;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.modalBody label {
+  font-size: 0.875rem;
+  color: #b3b3b3;
+}
+
+.modalBody input {
+  background-color: #3e3e3e;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 12px;
+  color: white;
+  outline: none;
+}
+
+.modalBody input:focus {
+  border-color: #be00b8;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cancelBtn, .confirmBtn {
+  padding: 10px 20px;
+  border-radius: 500px; 
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.cancelBtn {
+  background: none;
+  color: white;
+}
+
+.cancelBtn:hover {
+  text-decoration: underline;
+}
+
+.confirmBtn {
+  background-color: #be00b8;
+  color: white;
+}
+
+.confirmBtn:hover {
+  background-color: #d400ce;
+  transform: scale(1.04);
+}
+
+.deleteModal {
+  max-width: 350px;
+  border-top: 4px solid #ff4444; 
+}
+
+.deleteWarning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.deleteWarning p {
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+.deleteBtn {
+  background-color: #ff4444;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 500px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: #cc0000;
+  transform: scale(1.04);
+}
+
+
+.modalBody input {
+  width: 100%;
+  background-color: #3e3e3e;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 12px;
+  color: white;
+  margin-top: 5px;
+}
+
+.modalBody input:focus {
+  border-color: #be00b8;
+  outline: none;
+}
+.largeModal {
+    max-width: 550px;
+    width: 95%;
+}
+
+.songList {
+    max-height: 450px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 8px;
+}
+
+.songItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.songItem:hover {
+    background-color: #2a2a2a;
+    border-color: #333;
+}
+
+.songMainInfo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.songTitle {
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.songArtist {
+    color: #b3b3b3;
+    font-size: 0.8rem;
+}
+
+.songActions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.playSongInnerBtn {
+    background: #be00b8;
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0; /* Hidden until hover */
+    transition: opacity 0.2s;
+}
+
+.songItem:hover .playSongInnerBtn {
+    opacity: 1;
+}
+
+.removeSongBtn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.removeSongBtn:hover {
+    color: #ff4444;
+}
+
+.modalInput {
+    width: 100%;
+    padding: 12px;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: white;
+    margin-top: 10px;
+}
+
+.emptyMsg {
+    text-align: center;
+    color: #b3b3b3;
+    padding: 40px 0;
+    font-style: italic;
+}

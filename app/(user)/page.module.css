@@ -1,0 +1,356 @@
+
+.appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu main";
+    grid-template-columns: 240px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.mainContent::-webkit-scrollbar{
+    display: none;
+}
+
+.mainContent {
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    position: relative;
+    scrollbar-width: 0;
+}
+.noDataMessage {
+  grid-column: 1 / -1; 
+  padding: 40px 20px;
+  text-align: center;
+  color: #b3b3b3; 
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.contentPadding {
+    padding: 32px 32px 100px 32px; 
+}
+
+
+.greetingSection {
+    margin-bottom: 32px;
+}
+
+.greetingTitle {
+    font-size: 2rem; 
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.greetingGrid {
+    display: grid;
+    
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.greetingItem {
+    background-color: #282828;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.greetingItem:hover {
+    background-color: #404040;
+}
+
+.greetingItemCover {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.itemImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.greetingItemInfo {
+    padding: 0 16px;
+    flex-grow: 1;
+}
+
+.greetingItemInfoTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.playButton {
+    
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%) scale(0.9);
+    background-color: #e2007d; 
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; 
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.greetingItem:hover .playButton,
+.albumCard:hover .albumPlayButton {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+.playIcon {
+    margin-left: 2px; 
+}
+
+
+.section {
+    margin-bottom: 40px;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 16px;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.showAllBtn {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.3s ease;
+}
+
+.showAllBtn:hover {
+    color: #fff;
+}
+
+
+.albumGrid {
+  display: flex;
+  flex-direction: row;
+  
+  flex-wrap: nowrap; 
+  gap: 16px;
+  width: 100%;
+  padding: 10px 20px 20px 20px; 
+  
+  
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+  
+  -webkit-overflow-scrolling: touch;
+  
+  
+  scroll-snap-type: x mandatory;
+}
+
+
+.albumGrid > div {
+  flex: 0 0 auto; 
+  scroll-snap-align: start;
+}
+
+
+.albumGrid::-webkit-scrollbar {
+  height: 6px; 
+}
+
+.albumGrid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.albumGrid::-webkit-scrollbar-thumb {
+  background: #ce0179;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.albumGrid::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary, #be00b8);
+}
+
+.albumCard {
+
+    border-radius: 6px;
+    padding: 16px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.albumCard:hover {
+    background-color: #282828;
+}
+
+.albumCoverWrapper {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.albumImage {
+    width: 100%;
+    
+    padding-bottom: 100%;
+    height: 0;
+    position: relative;
+    object-fit: cover;
+    border-radius: 4px; 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); 
+    display: block; 
+}
+
+
+.albumCoverWrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+
+
+.albumPlayButton {
+    position: absolute;
+    right: 8px;
+    bottom: 8px; 
+    transform: translateY(0) scale(0.9); 
+    background-color: #1ed760;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+
+
+
+.albumCardTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.albumCardArtist {
+    font-size: 0.875rem;
+    color: #b3b3b3;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+
+@media (max-width: 650px) {
+    .appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu" "main";
+    grid-template-rows: 60px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.menuContainer {
+     grid-area: menu;
+}
+.mainContent {
+   width: 100vw;
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    
+}
+    
+    
+
+    .greetingGrid {
+        grid-template-columns: 1fr; 
+        gap: 8px;
+    }
+    
+    .greetingItem {
+        min-height: 56px;
+    }
+
+    .greetingItemCover {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .albumGrid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 16px;
+    }
+
+    .albumPlayButton, .playButton {
+        width: 40px;
+        height: 40px;
+        
+    }
+
+    .greetingTitle {
+        font-size: 1.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.25rem;
+    }
+
+    .showAllBtn {
+        font-size: 0.75rem;
+    }
+}

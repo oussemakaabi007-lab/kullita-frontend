@@ -1,54 +1,255 @@
-.menu{
-    background-color: #1c1c1c;
-    width:40%;
-    max-width: 300px;
-    min-width: 200px;
-    height:100vh;
+
+
+.sidebar {
+  width: 240px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem; 
+  position: fixed;
+  height: calc(100vh - 90px);
+  overflow-y: auto;
+  
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
-.menun{
-    width:0px;
-    height:100vh;
-   visibility: hidden;
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
-.menubtn{
-    position: fixed;
-    background-color: transparent;
-    z-index: 101;
-    padding: 5px 5px 5px 5px;
-    top: 0;
-    left: 0;
-    transition: background-color 0.5s;
-    cursor: pointer;
-    font-size: 2rem;
-    border-radius: 50%;
+
+
+.logoHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+  margin-bottom: 2rem; 
 }
-.menubtn:hover{
-    background-color: #09090924;
-    cursor: pointer;
+
+.logoIcon {
+  width: 2rem; 
+  height: 2rem; 
+  background: linear-gradient(to bottom right, #be00b8, #e01a95);
+  border-radius: 0.5rem; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.mul{
-    max-width: 300px;
-    min-width: 200px;
-    text-decoration: none;
-    list-style: none;
-    color: white;
-    font-size: 1.2rem;
-    display: block;
-    justify-content: center;
+
+.logoLetter {
+  color: white;
+  font-weight: bold;
+}
+
+.appName {
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem; 
+}
+
+
+.nav {
+  margin-bottom: 1.5rem; 
+}
+
+/* The .navBtn class is applied to both <Link> (<a>) and <button> elements. 
+   Using padding, border: none, and background: transparent makes them look uniform. */
+.navBtn {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+  width: 100%;
+  padding: 0.75rem; 
+  border-radius: 0.5rem; 
+  transition: all 0.2s ease;
+  margin-bottom: 0.5rem; 
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #b3b3b3;
+  
+  text-decoration: none; 
+}
+
+.navBtn span {
+  font-weight: 600; 
+}
+
+.navBtn:hover {
+  color: white;
+}
+
+
+.active.navBtn {
+  background: linear-gradient(to right, #be00b8, #e01a95);
+  color: white;
+}
+
+
+.actionBtn.active {
+  background: linear-gradient(to right, #be00b8, #e01a95);
+  color: white;
+  
+}
+
+
+.likedBtn.active {
+  background: linear-gradient(to right, #be00b8, #e01a95);
+  color: white;
+}
+
+
+.playlistSection {
+  margin-top: 1.5rem; 
+}
+
+.sectionTitle {
+  color: #b3b3b3;
+  font-size: 0.875rem; 
+  font-weight: 600;
+  margin-bottom: 1rem; 
+  text-transform: uppercase;
+  letter-spacing: 0.05em; 
+}
+
+
+.actionBtn,
+.playlistLink {
+    border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; 
+  width: 100%;
+  padding: 0.5rem; 
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.actionBtn:hover,
+.playlistLink:hover {
+  color: white;
+}
+
+.actionBtn {
+  margin-bottom: 0.5rem;
+}
+
+.likedBtn {
+  margin-bottom: 1rem;
+}
+
+
+.playlistList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.simpleLink {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem;
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: 0.875rem; 
+}
+
+.simpleLink:hover {
+  color: white;
+}
+
+.logoutBtn {
+  margin-top: auto; 
+  width: 100%;
+  padding: 1rem 0.5rem;
+  color: #b3b3b3;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+  border-top: 1px solid #2a2a2a; 
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoutBtn:hover {
+  color: #ef4444; 
+}
+@media (max-width: 650px) {
+  .sidebar {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 80px;
+    background-color: #000;
+    border-top: 1px solid #282828;
+    z-index: 1000;
+
+    
+    display: flex;
+    flex-direction: row; 
+    overflow-x: auto;    
+    overflow-y: hidden;  
+    white-space: nowrap; 
+    
+    
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+  }
+
+  .sidebar::-webkit-scrollbar {
+    display: none; 
+  }
+
+  
+  .nav, .playlistSection, .logoHeader, .playlistList{
+    display: flex ;
+    flex-direction: row;
+    margin: 0 ;
     align-items: center;
-    text-align: center;
-    margin-top: 15%;
-    position: absolute;
-}
-.mli{
+  }
+
+  
+  .navBtn, .actionBtn, .likedBtn, .logoutBtn {
+    flex: 1; 
+    display: flex !important;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
     padding: 10px;
-    transition: background-color 0.5s, color 0.5s;
-}.mli:hover{
-    background-color: rgb(190, 0, 184);
+    font-size: 11px;
+    background: transparent;
+    color: #b3b3b3;
+  }
+
+  .active.navBtn, .actionBtn.active, .likedBtn.active {
     color: white;
-    cursor: pointer;
-}
-.ma{
-    display: block;
-    width: 100%;
+    
+    background: linear-gradient(to bottom, #be00b8, #e01a95);
+    border-radius: 8px;
+  }
+
+  
+  .logoHeader, .sectionTitle {
+    display: none !important;
+  }
+
+  .logoutBtn {
+    border-top: none; 
+    margin-top: 0;
+    color: #ef4444; 
+  }
 }

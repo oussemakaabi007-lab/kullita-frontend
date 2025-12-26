@@ -1,0 +1,57 @@
+
+.appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu main";
+    grid-template-columns: 240px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.mainContent::-webkit-scrollbar{
+    display: none;
+}
+
+.mainContent {
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    position: relative;
+    scrollbar-width: 0;
+}
+.contentPadding {
+    padding: 32px 32px 100px 32px; 
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+}
+@media (max-width: 650px) {
+    .appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu" "main";
+    grid-template-rows: 60px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.menuContainer {
+     grid-area: menu;
+}
+.mainContent {
+   width: 100vw;
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    
+}
+}

@@ -1,0 +1,124 @@
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #1a1a1a;
+}
+
+.letterBackground {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(3rem, 8vw, 5rem); 
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+  
+  background: linear-gradient(135deg, #000000 0%, #a90030 100%);
+  z-index: 1;
+  text-transform: uppercase;
+}
+
+
+
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  z-index: 2;
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.name {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  position: absolute;
+  top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.count {
+  color: #b3b3b3;
+  font-size: 0.85rem;
+  margin: 4px 0 0 0;
+}
+
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.card:hover .actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.secondaryActions {
+  display: flex;
+  gap: 8px;
+}
+
+.iconBtn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.playBtn {
+  background: #be00b8;
+  width: 42px;
+  height: 42px;
+}
+
+@media (max-width: 650px) {
+  .actions {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 650px) {
+  .actions {
+    opacity: 1; 
+    transform: translateY(0);
+  }
+  
+  .name {
+    font-size: 1rem;
+  }
+}

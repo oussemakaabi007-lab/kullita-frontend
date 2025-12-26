@@ -1,0 +1,438 @@
+
+.appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu main";
+    grid-template-columns: 240px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.mainContent::-webkit-scrollbar{
+    display: none;
+}
+
+.mainContent {
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    position: relative;
+    scrollbar-width: 0;
+}
+.contentPadding {
+    padding: 32px 32px 100px 32px; 
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.contentPadding {
+    padding: 32px 32px 100px 32px; 
+}
+
+.greetingTitle {
+    font-size: 2rem; 
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 650px) {
+    .appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu" "main";
+    grid-template-rows: 60px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.menuContainer {
+     grid-area: menu;
+}
+.mainContent {
+   width: 100vw;
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    
+}
+.contentPadding {
+    padding: 16px 16px 100px 16px; 
+}
+    .greetingTitle {
+        font-size: 1.5rem;
+    }
+
+}
+.dashHeader { margin-bottom: 40px; }
+.subtitle { color: #b3b3b3; margin-top: 8px; }
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.statCard {
+  background: #181818;
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #282828;
+}
+
+.statLabel { color: #b3b3b3; font-size: 0.85rem; margin-bottom: 4px; }
+.statValue { font-size: 1.8rem; font-weight: 800; }
+
+.sectionSpace { margin-top: 40px; }
+.sectionHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+.topSongsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.actionGrid {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.actionCard {
+  flex: 1;
+  background: #be00b81a;
+  border: 1px dashed #be00b8;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.actionCard:hover { background: #be00b833; }
+
+@media (max-width: 900px) {
+  .topSongsGrid { grid-template-columns: 1fr; }
+}
+.topTracksContainer {
+  display: flex;
+  gap: 30px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.bestTrackCard {
+  flex: 0 1 33.33%;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(180deg, #1e1e1e 0%, #121212 100%);
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid #282828;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rankNumber {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #eb015b;
+  opacity: 0.5;
+  z-index: 1000;
+  font-style: italic;
+}
+
+.bestImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+  margin-bottom: 20px;
+}
+
+.bestSongImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.bestOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.bestOverlayContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.playCountText {
+  color: white;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.bestTrackCard:hover {
+  transform: translateY(-10px);
+  border-color: #be00b8;
+  background: #1a1a1a;
+}
+
+.bestTrackCard:hover .bestOverlay {
+  opacity: 1;
+}
+
+.bestTrackCard:hover .bestOverlayContent {
+  transform: scale(1);
+}
+
+
+.bestSongTitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.bestSongGenre {
+  color: #b3b3b3;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1100px) {
+  .topTracksContainer {
+    flex-direction: column; 
+  }
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.modalContent {
+  background: #181818;
+  width: 100%;
+  max-width: 500px;
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid #282828;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modalHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup label {
+  color: #b3b3b3;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.inputGroup input {
+  background: #282828;
+  border: 1px solid #333;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  outline: none;
+}
+
+.inputGroup input:focus {
+  border-color: #be00b8;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.cancelBtn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.submitBtn {
+  flex: 2;
+  background: #be00b8;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: opacity 0.2s;
+}
+
+.submitBtn:hover {
+  opacity: 0.9;
+}
+.fileRow {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.fileInputContainer {
+  flex: 1;
+}
+
+
+.hiddenInput {
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+.customUploadBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: #222;
+  border: 2px dashed #333;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 140px;
+}
+
+.uploadIcon {
+  color: #be00b8;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.uploadText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.uploadTitle {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.uploadSubtitle {
+  display: block;
+  font-size: 0.75rem;
+  color: #b3b3b3;
+  
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.customUploadBox {
+    flex: 1;
+    max-width: 50%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 10px;
+    background: #222;
+    border: 2px dashed #333;
+    border-radius: 12px;
+    cursor: pointer;
+    min-height: 120px;
+}
+.errorMessage {
+  background-color: rgba(255, 68, 68, 0.1);
+  color: #ff4444;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}

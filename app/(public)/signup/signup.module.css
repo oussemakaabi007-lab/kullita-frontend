@@ -1,0 +1,180 @@
+.pageWrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px; 
+    padding: 35px;
+    background-color: #121212;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.errorMessage {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    border: 1px solid rgba(255, 77, 77, 0.2);
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.innerIcon {
+    position: absolute;
+    left: 12px;
+    color: #b3b3b3;
+}
+
+.inputField {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    background-color: #2a2a2a;
+    border: 1px solid transparent;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.inputField:focus {
+    background-color: #333333;
+    border-color: #be00b8;
+    outline: none;
+}
+
+.eyeBtn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+
+.roleSelection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.radioGroup {
+    display: flex;
+    background-color: #2a2a2a;
+    padding: 4px;
+    border-radius: 8px;
+    gap: 4px;
+}
+
+.radioLabel {
+    flex: 1;
+    cursor: pointer;
+}
+
+.radioLabel input {
+    display: none; 
+}
+
+.customRadio {
+    text-align: center;
+    padding: 8px;
+    color: #b3b3b3;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.radioLabel input:checked + .customRadio {
+    background-color: #be00b8;
+    color: #ffffff;
+}
+
+.submitBtn {
+    cursor: pointer;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: #be00b8;
+    color: #ffffff;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: transform 0.2s;
+    margin-top: 10px;
+}
+
+.submitBtn:hover {
+    transform: scale(1.02);
+    background-color: #d400cc;
+}
+
+.divider {
+    text-align: center;
+    color: #b3b3b3;
+    font-size: 0.8rem;
+}
+
+.formLink {
+    text-align: center;
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.formLink:hover {
+    color: #be00b8;
+    text-decoration: underline;
+}
+
+
+@media screen and (max-width: 650px) {
+    .pageWrapper {
+        align-items: flex-start;
+        padding-top: 30px;
+    }
+
+    .container {
+        max-width: none;
+        background-color: transparent;
+        padding: 20px;
+    }
+}

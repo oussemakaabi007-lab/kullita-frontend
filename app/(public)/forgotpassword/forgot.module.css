@@ -1,0 +1,102 @@
+.pageWrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 35px;
+    background-color: #121212;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 5px;
+}
+
+.backBtn {
+    color: #b3b3b3;
+    transition: color 0.2s;
+}
+
+.backBtn:hover {
+    color: #ffffff;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.successMessage {
+    background-color: rgba(0, 255, 127, 0.1);
+    color: #00ff7f;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(0, 255, 127, 0.2);
+}
+
+.errorMessage {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 77, 77, 0.2);
+}
+
+.inputGroup { display: flex; flex-direction: column; gap: 8px; }
+.label { color: #ffffff; font-size: 0.85rem; font-weight: 600; }
+.inputWrapper { position: relative; display: flex; align-items: center; }
+.innerIcon { position: absolute; left: 12px; color: #b3b3b3; }
+
+.inputField {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    background-color: #2a2a2a;
+    border: 1px solid transparent;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.inputField:focus { border-color: #be00b8; outline: none; }
+
+.submitBtn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px;
+    background-color: #be00b8;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: transform 0.2s;
+}
+
+.submitBtn:hover { transform: scale(1.02); }
+
+@media screen and (max-width: 650px) {
+    .container { background-color: transparent; padding: 20px; }
+}

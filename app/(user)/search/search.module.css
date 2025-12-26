@@ -1,0 +1,130 @@
+.appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu main";
+    grid-template-columns: 240px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.mainContent::-webkit-scrollbar{
+    display: none;
+}
+
+.mainContent {
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    position: relative;
+    scrollbar-width: 0;
+}
+.contentPadding {
+    padding: 32px 32px 100px 32px; 
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.contentPadding {
+    padding: 32px 32px 100px 32px; 
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 32px;
+  width: 100%;
+}
+.searchWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBar {
+    position: relative;
+    max-width: 450px;
+    width: 100%;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff00c8;
+    pointer-events: none;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 45px;
+    border-radius: 50px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    background: white;
+    color: black;
+    outline: none;
+}
+
+.clearIcon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000;
+    cursor: pointer;
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    color: #b3b3b3;
+    gap: 16px;
+    text-align: center;
+}
+.songslist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+@media (max-width: 650px) {
+    .songslist {
+        grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    }
+    .appContainer {
+    
+    display: grid;
+    grid-template-areas: "menu" "main";
+    grid-template-rows: 60px 1fr; 
+    height: 100vh;
+    background-color: #000; 
+    color: #fff; 
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.menuContainer {
+     grid-area: menu;
+}
+.mainContent {
+   width: 100vw;
+    grid-area: main;
+    overflow-y: auto; 
+    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    
+}
+}
