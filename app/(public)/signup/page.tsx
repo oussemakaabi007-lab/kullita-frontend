@@ -2,7 +2,7 @@
 import styles from './signup.module.css';
 import { useState } from "react";
 import Link from 'next/link';
-import { Eye, EyeOff, Lock, User, Mail, Music } from 'lucide-react';
+import { Eye, EyeOff, Lock, User, Mail, Music, Loader2 } from 'lucide-react';
 
 function Signup() {
     const [form, setForm] = useState({
@@ -95,7 +95,12 @@ function Signup() {
                         <input type="email" name="email" className={styles.inputField} placeholder="name@example.com" onChange={handleChange} value={form.email} required />
                     </div>
                 </div>
-
+                { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>creating account...</span>
+        </div>
+      )}
                 <div className={styles.inputGroup}>
                     <label className={styles.label}>Password</label>
                     <div className={styles.inputWrapper}>

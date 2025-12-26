@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Home, Search, Library, Plus, Heart, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Home, Search, Library, Plus, Heart, Play, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Menu from '@/app/components/Menu'
 import Header from '../components/header';
@@ -128,7 +128,12 @@ export default function HomePage() {
         </div>
         </section>
       )}
-      <p style={{ display: loading ? 'block' : 'none' }}>Loading songs...</p>
+      { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Loading songs...</span>
+        </div>
+      )}
       {!loading && otherSections.map((section) => (
         <section key={section.id} className={styles.section}>
         <div className={styles.sectionHeader}>
@@ -156,7 +161,7 @@ export default function HomePage() {
       />
     ))
   ) : (
-    <p className={styles.noDataMessage}>{section.id=="recent" ? "you did not play any song yet" :"There is no trending songs right now"}</p>
+    <p className={styles.noDataMessage}>{section.id=="recent" ? "you did not play any song yet" :(section.id=="trending"? "There is no trending songs right now" : "no song was added this week")}</p>
   )}
 </div>
         </section>

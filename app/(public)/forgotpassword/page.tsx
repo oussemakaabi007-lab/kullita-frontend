@@ -2,7 +2,7 @@
 import styles from './forgot.module.css';
 import { useState } from "react";
 import Link from 'next/link';
-import { Mail, ArrowLeft, Send } from 'lucide-react';
+import { Mail, ArrowLeft, Send, Loader2 } from 'lucide-react';
 
 function ForgotPassword() {
     const [email, setEmail] = useState("");
@@ -51,7 +51,12 @@ function ForgotPassword() {
 
                 {message && <div className={styles.successMessage}>{message}</div>}
                 {error && <div className={styles.errorMessage}>{error}</div>}
-
+                { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>sending email...</span>
+        </div>
+      )}
                 <div className={styles.inputGroup}>
                     <label className={styles.label}>Email Address</label>
                     <div className={styles.inputWrapper}>

@@ -2,7 +2,7 @@
 import styles from './login.module.css';
 import { useState } from "react";
 import Link from 'next/link';
-import { Eye, EyeOff, Lock, User } from 'lucide-react';
+import { Eye, EyeOff, Loader2, Lock, User } from 'lucide-react';
 
 function Login() {
     const [form, setForm] = useState({ "username": "", "password": "" });
@@ -70,7 +70,12 @@ function Login() {
                         />
                     </div>
                 </div>
-
+                { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Loging in...</span>
+        </div>
+      )}
                 <div className={styles.inputGroup}>
                     <label className={styles.label}>Password</label>
                     <div className={styles.inputWrapper}>

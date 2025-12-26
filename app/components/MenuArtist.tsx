@@ -2,17 +2,19 @@
 import Link from "next/link";
 import styles from "./menu.module.css";
 import { useRouter, usePathname } from "next/navigation";
-import { Heart, Plus, Home, Search, LogOut ,Library ,History ,TrendingUp, LayoutDashboard, Music, UserRoundPen} from "lucide-react";
+import { Heart, Plus, Home, Search, LogOut ,Library ,History ,TrendingUp, LayoutDashboard, Music, UserRoundPen, Loader2} from "lucide-react";
 import { useState } from "react";
 
 function MenuArtist() {
   const router = useRouter(); 
   const pathname = usePathname();
-
+  const [loading,setLoading]=useState(false);
   const handleLogout =async () => {
+    setLoading(true);
    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include', });
     localStorage.clear();
     localStorage.setItem("logout_event", Date.now().toString());
+    setLoading(false);
     router.push('/login');
   };
   const getActiveClass = (href:string) => {
@@ -50,7 +52,12 @@ function MenuArtist() {
           <span>Profile</span>
         </Link>
       </nav>
-
+    { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Loading songs...</span>
+        </div>
+      )}
       <button onClick={handleLogout} className={styles.logoutBtn}>
         <LogOut size={20} />
         Log out

@@ -2,11 +2,11 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, Suspense } from 'react';
 import styles from './reset.module.css';
-import { Lock, Eye, EyeOff } from 'lucide-react';
+import { Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
 function ResetPasswordForm() {
     const searchParams = useSearchParams();
     const token = searchParams.get('token');
-
+    const [loading,setLoading]=useState(false);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -24,6 +24,7 @@ function ResetPasswordForm() {
             return;
         }
         try {
+            setLoading(true);
             const res = await fetch("/api/auth/reset-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -36,6 +37,7 @@ function ResetPasswordForm() {
             } else {
                 setStatus({ type: 'error', msg: 'Reset failed. Link may be expired.' });
             }
+            setLoading(false);
         } catch (err) {
             setStatus({ type: 'error', msg: 'Reset failed. Link may be expired.' });
         }
@@ -65,7 +67,12 @@ function ResetPasswordForm() {
                         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                 </div>
-                
+                { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Resting password...</span>
+        </div>
+      )}
                 <label className={styles.label}>Confirm Password</label>
                 <div className={styles.inputWrapper}>
                     <Lock className={styles.innerIcon} size={18} />

@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState,useRef } from "react";
 import Audioplayer from "./Audioplayer";
 import { useRouter } from "next/navigation";
 
@@ -17,14 +17,15 @@ export interface Song {
 interface AudioContextType {
   playSong: (song:Song) => void;
   upSongs :(songs:Song [])=>void;
+  updateFavoriteStatus: (songId: number, isFavorite: boolean) => void;
   currentSong:Song;
+  songs: Song[];
 }
 const AudioContext = createContext<AudioContextType | null>(null);
 
 export const AudioProvider = ({ children}:any) => {
   const [songs,setSongs]=useState<Song []>([]);
-
- 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentSong, setCurrentSong] = useState({id: -1,
         title: "",
         audioUrl: "",
@@ -50,10 +51,19 @@ export const AudioProvider = ({ children}:any) => {
         updatedAt: new Date("2022-03-25"),
       isFavorite:false} );
   const playSong =(song:Song) => {
-    setCurrentSong(song);
-    addPlayHistory(song.id);
+    if (currentSong?.id === song.id) {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  setCurrentSong(song);
     setnextSong(nextSong);
     setpreviousSong(previousSong);
+  return;}
+    setCurrentSong(song);
+    setnextSong(nextSong);
+    setpreviousSong(previousSong);
+    addPlayHistory(song.id);
   };
   const upSongs =(songs :Song []) =>{
       setSongs(songs);
@@ -89,10 +99,25 @@ export const AudioProvider = ({ children}:any) => {
         const index=songs.findIndex(song =>currentSong.id== song.id);
          return songs[index - 1] ?? songs[songs.length-1];
     }
+    const updateFavoriteStatus = (songId: number, isFavorite: boolean) => {
+    if (currentSong.id === songId) {
+      setCurrentSong(prev => ({ ...prev, isFavorite }));
+    }
+    setSongs(prevSongs => {
+    if (isFavorite) {
+      const exists = prevSongs.find(s => s.id === songId);
+      if (!exists && currentSong.id === songId) {
+        return [...prevSongs, { ...currentSong, isFavorite: true }];
+      }
+      return prevSongs;}
+    return prevSongs.filter(s => s.id !== songId);
+  });
+  }
   return (
-    <AudioContext.Provider value={{ playSong, upSongs , currentSong }}>
+    <AudioContext.Provider value={{ playSong, upSongs , currentSong ,updateFavoriteStatus ,songs}}>
       {children}
       <Audioplayer
+     ref={audioRef}
         currentSong={currentSong}
         onNext={()=>{playSong(nextSong)}}
         onPrevious={()=>{playSong(previousSong)}}
@@ -108,7 +133,7 @@ export const useAudio = () => {
   if (!context) {
     throw new Error('useAudio must be used within an AudioProvider');
   }
-  const { playSong,upSongs, currentSong } = context;
+  const { playSong,upSongs, currentSong ,updateFavoriteStatus,songs} = context;
 
-  return { playSong,upSongs, currentSong };
+  return { playSong,upSongs, currentSong ,updateFavoriteStatus,songs};
 };

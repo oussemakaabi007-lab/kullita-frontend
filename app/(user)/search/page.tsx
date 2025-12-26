@@ -6,7 +6,7 @@ import Header from "@/app/components/header";
 import styles from './search.module.css';
 import SongCard from "@/app/components/Songcard";
 import { useAudio } from "@/app/components/AudioPlayerProvider";
-import { Search as SearchIcon, X, Music } from "lucide-react";
+import { Search as SearchIcon, X, Music, Loader2 } from "lucide-react";
 
 export default function SearchPage() {
     const [query, setQuery] = useState("");
@@ -76,8 +76,11 @@ export default function SearchPage() {
                 </header>
                 <div className={styles.contentPadding}>
                     {isLoading ? (
-                        <p className="text-white">Searching...</p>
-                    ) : results.length === 0 ? (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Searching songs...</span>
+        </div>
+      ) : results.length === 0 ? (
                         <div className={styles.emptyState}>
                             <Music size={48} opacity={0.5} />
                             <p>{query ? `No songs found for "${query}"` : "Search for your favorite music"}</p>

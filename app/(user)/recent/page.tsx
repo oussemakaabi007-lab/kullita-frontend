@@ -5,7 +5,7 @@ import Header from "@/app/components/header";
 import { useEffect, useState, useRef, useCallback } from "react";
 import SongCard from "@/app/components/Songcard";
 import { Song, useAudio } from "@/app/components/AudioPlayerProvider";
-import { History } from "lucide-react";
+import { History, Loader2 } from "lucide-react";
 
 interface MusicData {
   id: string;
@@ -20,7 +20,7 @@ function Recent() {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const observerTarget = useRef(null);
-  const limit = 20;
+  const limit = 10;
   const fetchRecentSongs = useCallback(async (currentOffset: number) => {
     if (loading || !hasMore) return;
     
@@ -111,7 +111,12 @@ function Recent() {
             </div>
           )}
           <div ref={observerTarget} style={{ height: '50px', margin: '20px 0' }}>
-            {loading && <p style={{ textAlign: 'center' }}>Loading more songs...</p>}
+            { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Loading songs...</span>
+        </div>
+      )}
             {!hasMore && recentSongs.length > 0 && (
               <p style={{ textAlign: 'center', opacity: 0.5 }}>End of history</p>
             )}

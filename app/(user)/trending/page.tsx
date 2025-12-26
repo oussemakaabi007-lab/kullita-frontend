@@ -5,7 +5,7 @@ import Header from "@/app/components/header";
 import { useEffect, useState, useRef, useCallback } from "react";
 import SongCard from "@/app/components/Songcard";
 import { Song, useAudio } from "@/app/components/AudioPlayerProvider";
-import { TrendingUp } from "lucide-react";
+import { Loader2, TrendingUp } from "lucide-react";
 
 interface MusicData {
   id: string;
@@ -20,7 +20,7 @@ function Trending() {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const observerTarget = useRef(null);
-  const limit = 20;
+  const limit = 10;
   const fetchTrendingSongs = useCallback(async (currentOffset: number) => {
     if (loading || !hasMore) return;
 
@@ -110,7 +110,12 @@ function Trending() {
             </div>
           )}
           <div ref={observerTarget} style={{ height: '50px', margin: '20px 0' }}>
-            {loading && <p style={{ textAlign: 'center' }}>Loading more trending hits...</p>}
+             { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Loading songs...</span>
+        </div>
+      )}
             {!hasMore && trendingSongs.length > 0 && (
               <p style={{ textAlign: 'center', opacity: 0.5 }}>You've seen all the top hits!</p>
             )}

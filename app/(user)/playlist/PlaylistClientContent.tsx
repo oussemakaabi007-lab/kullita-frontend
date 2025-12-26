@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, X, AlertTriangle, ListMusic, Trash2, Music, Play } from 'lucide-react';
+import { Plus, X, AlertTriangle, ListMusic, Trash2, Music, Play, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './playlist.module.css';
@@ -10,6 +10,7 @@ import { useAudio } from '@/app/components/AudioPlayerProvider';
 export default function PlaylistClientContent({ playlists: initialPlaylists, user: currentUser }: any) {
   const router = useRouter();
   const { playSong, upSongs } = useAudio();
+  
   const [modalMode, setModalMode] = useState<'create' | 'edit' | 'delete' | 'view' | null>(null);
   const [activePlaylist, setActivePlaylist] = useState<any>(null);
   const [modalSongs, setModalSongs] = useState<any[]>([]);
@@ -22,17 +23,15 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
     setInputValue("");
     setModalSongs([]);
   };
-  const openPlaylistSongs = async (playlist: any) => {
+  const handleOpenManagementModal = async (playlist: any) => {
+    setLoadingSongs(true);
     setActivePlaylist(playlist);
     setModalMode('view');
-    setLoadingSongs(true);
     try {
       const response = await fetch(`/api/playlist/getsongs?playlistId=${playlist.id}`, {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials:'include',
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
       });
       if (response.ok) {
         const data = await response.json();
@@ -44,18 +43,41 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
       setLoadingSongs(false);
     }
   };
+  const handleQuickPlay = async (playlist: any) => {
+    setLoadingSongs(true);
+    try {
+      const response = await fetch(`/api/playlist/getsongs?playlistId=${playlist.id}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
+      });
 
-  const handleRemoveSong = async (songId: number) => {
-    if(!songId){
-      return;
+      if (response.ok) {
+        const data = await response.json();
+        const songs = data.songs || [];
+
+        if (songs.length > 0) {
+          upSongs(songs);
+          playSong(songs[0]);
+        } else {
+          setActivePlaylist(playlist);
+          setModalSongs([]);
+          setModalMode('view');
+        }
+      }
+    } catch (err) {
+      console.error("Playback fetch failed", err);
+    } finally {
+      setLoadingSongs(false);
     }
+  };
+  const handleRemoveSong = async (songId: number) => {
+    if (!songId) return;
     try {
       const response = await fetch('/api/playlist/removesong', {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials:'include',
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
         body: JSON.stringify({ playlistId: activePlaylist.id, songId })
       });
 
@@ -68,16 +90,12 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
   };
 
   const handleCreate = async () => {
-    if(!inputValue.trim()){
-      return;
-    }
+    if (!inputValue.trim()) return;
     try {
       await fetch('/api/playlist/create', {
         method: "POST",
-       headers: {
-          "Content-Type": "application/json"
-        },
-        credentials:'include',
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
         body: JSON.stringify({ name: inputValue })
       });
       closeModals();
@@ -86,16 +104,12 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
   };
 
   const handleEdit = async () => {
-    if(!inputValue.trim()){
-      return;
-    }
+    if (!inputValue.trim()) return;
     try {
       await fetch('/api/playlist/edit', {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials:'include',
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
         body: JSON.stringify({ playlistId: activePlaylist.id, newname: inputValue })
       });
       closeModals();
@@ -107,10 +121,8 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
     try {
       await fetch('/api/playlist/delete', {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials:'include',
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
         body: JSON.stringify({ playlistId: activePlaylist.id })
       });
       closeModals();
@@ -139,14 +151,8 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
             <PlaylistCard
               key={playlist.id}
               name={playlist.name}
-              onPlay={() => {
-                  openPlaylistSongs(playlist).then(() => {
-                      if (modalSongs.length > 0) {
-                          upSongs(modalSongs);
-                          playSong(modalSongs[0]);
-                      }
-                  });
-              }}
+              onPlay={() => handleQuickPlay(playlist)}
+              onClick={() => handleOpenManagementModal(playlist)}
               onEdit={() => {
                 setActivePlaylist(playlist);
                 setInputValue(playlist.name);
@@ -156,11 +162,16 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
                 setActivePlaylist(playlist);
                 setModalMode('delete');
               }}
-              onClick={() => openPlaylistSongs(playlist)}
             />
           ))}
         </div>
       </div>
+      {loadingSongs && !modalMode && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Loading songs...</span>
+        </div>
+      )}
 
       {modalMode && (
         <div className={styles.modalOverlay}>
@@ -183,36 +194,43 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
             <div className={styles.modalBody}>
               {modalMode === 'view' ? (
                 <div className={styles.songList}>
-                  {loadingSongs ? (
-                      <p className={styles.emptyMsg}>Loading songs...</p>
-                  ) : modalSongs.length > 0 ? (
-                      modalSongs.map((song) => (
-                        <div key={song.id} className={styles.songItem}>
-                          <div className={styles.songMainInfo}>
-                            <Music size={16} className={styles.musicIcon} />
-                            <div className={styles.textContainer}>
-                                <span className={styles.songTitle}>{song.title}</span>
-                                <span className={styles.songArtist}>{song.artist || "Unknown Artist"}</span>
-                            </div>
-                          </div>
-                          <div className={styles.songActions}>
-                              <button 
-                                className={styles.playSongInnerBtn} 
-                                onClick={() => { playSong(song); upSongs(modalSongs); }}
-                              >
-                                <Play size={16} fill="currentColor" />
-                              </button>
-                              <button 
-                                className={styles.removeSongBtn} 
-                                onClick={() => handleRemoveSong(song.id)}
-                              >
-                                <Trash2 size={18} />
-                              </button>
+                  {loadingSongs ?  (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Loading songs...</span>
+        </div>
+      ) :modalSongs.length > 0 ? (
+                    modalSongs.map((song) => (
+                      <div key={song.id} className={styles.songItem}>
+                        <div className={styles.songMainInfo}>
+                          <Music size={16} className={styles.musicIcon} />
+                          <div className={styles.textContainer}>
+                            <span className={styles.songTitle}>{song.title}</span>
+                            <span className={styles.songArtist}>{song.artist || "Unknown Artist"}</span>
                           </div>
                         </div>
-                      ))
+                        <div className={styles.songActions}>
+                          <button 
+                            className={styles.playSongInnerBtn} 
+                            onClick={() => { playSong(song); upSongs(modalSongs); }}
+                          >
+                            <Play size={16} fill="currentColor" />
+                          </button>
+                          <button 
+                            className={styles.removeSongBtn} 
+                            onClick={() => handleRemoveSong(song.id)}
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
+                      </div>
+                    ))
                   ) : (
+                    <div className={styles.emptyStateContainer}>
+                      <Music size={48} className={styles.emptyIcon} />
                       <p className={styles.emptyMsg}>This playlist is empty.</p>
+                      <button onClick={closeModals} className={styles.addMoreBtn}>Add some music</button>
+                    </div>
                   )}
                 </div>
               ) : modalMode === 'delete' ? (
@@ -222,15 +240,15 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
                 </div>
               ) : (
                 <div className={styles.inputGroup}>
-                    <label>Playlist Name</label>
-                    <input 
-                      type="text" 
-                      className={styles.modalInput}
-                      value={inputValue} 
-                      onChange={(e) => setInputValue(e.target.value)} 
-                      placeholder="My playlist"
-                      autoFocus 
-                    />
+                  <label>Playlist Name</label>
+                  <input 
+                    type="text" 
+                    className={styles.modalInput}
+                    value={inputValue} 
+                    onChange={(e) => setInputValue(e.target.value)} 
+                    placeholder="My playlist"
+                    autoFocus 
+                  />
                 </div>
               )}
             </div>

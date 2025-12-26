@@ -29,6 +29,7 @@ export default function ProfileClientContent({ userInfo }: { userInfo: User }) {
     };
 
   const handleUsernameSave = async (newUsername: string) => {
+    
     try {
       if(!newUsername.trim()){
         setStatus({ type: 'error', msg: 'username cannot be empty' });
@@ -40,15 +41,17 @@ export default function ProfileClientContent({ userInfo }: { userInfo: User }) {
 }   if (newUsername.includes("@")) {
     setStatus({ type: 'error', msg: 'Username cannot contain @' });
     return false;
-}
+}   setLoading(true);
       await Update(newUsername);
      setCurrentUserInfo(prev => ({ ...prev, name: newUsername }));
      setStatus({ type: 'success', msg: 'Username updated successfully!' });
+     setLoading(false);
      return true;
     } catch (err) {
       setStatus({ type: 'error', msg: 'username is taken' });
       return false;
     }
+    
   };
 
   const handlePasswordUpdate = async (e: React.FormEvent) => {
@@ -59,7 +62,10 @@ export default function ProfileClientContent({ userInfo }: { userInfo: User }) {
       setStatus({ type: 'error', msg: 'Password cannot be empty' });
       return;
     }
-
+    if(passwords.current.trim()===passwords.new.trim()){
+      setStatus({ type: 'error', msg: 'new password cannot be the same as the current ' });
+      return;
+    }
     if (passwords.new !== passwords.confirm) {
       setStatus({ type: 'error', msg: 'New passwords do not match.' });
       return;
@@ -168,9 +174,15 @@ export default function ProfileClientContent({ userInfo }: { userInfo: User }) {
                   className={styles.savePasswordBtn}
                   disabled={loading}
                 >
-                  {loading ? <Loader2 className={styles.spinner} size={18} /> : 'Update Password'}
+                 Update Password
                 </button>
               </form>
+               { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>updating profile...</span>
+        </div>
+      )}
             </section>
             <section className={styles.dangerZone}>
               <div className={styles.dangerText}>

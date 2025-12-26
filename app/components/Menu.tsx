@@ -2,17 +2,19 @@
 import Link from "next/link";
 import styles from "./menu.module.css";
 import { useRouter, usePathname } from "next/navigation";
-import { Heart, Plus, Home, Search, LogOut ,Library ,History ,TrendingUp} from "lucide-react";
+import { Heart, Plus, Home, Search, LogOut ,Library ,History ,TrendingUp, Loader2} from "lucide-react";
 import { useState } from "react";
 
 function Menu() {
   const router = useRouter(); 
   const pathname = usePathname();
-
+  const [loading,setLoading]=useState(false);
   const handleLogout = async () => {
+    setLoading(true);
    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include', });
     localStorage.clear();
     localStorage.setItem("logout_event", Date.now().toString());
+    setLoading(false);
     router.push('/login');
   };
   const getActiveClass = (href:string) => {
@@ -50,6 +52,12 @@ function Menu() {
           <span>Trending</span>
         </Link>
       </nav>
+      { loading && (
+        <div className={styles.miniLoader}>
+          <Loader2 className="animate-spin" size={24} />
+          <span>Loging out...</span>
+        </div>
+      )}
       <div className={styles.playlistSection}>
         <h3 className={styles.sectionTitle}>Playlists</h3>
         <Link 
