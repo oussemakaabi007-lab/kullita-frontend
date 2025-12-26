@@ -16,6 +16,22 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kullita",
   description: "Kullita music app",
+  openGraph: {
+    title: "Kullita",
+    description: "hello this is kullita.",
+    url: "https://kullita-frontend.vercel.app",
+    siteName: "Kullita",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Kullita Music Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
