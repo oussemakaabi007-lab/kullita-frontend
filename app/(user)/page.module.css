@@ -224,7 +224,7 @@
 }
 
 .albumGrid::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-primary, #005eff);
+  background:  #005eff;
 }
 
 .albumCard {
