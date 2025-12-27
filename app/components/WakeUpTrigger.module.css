@@ -52,7 +52,7 @@
 }
 
 .wakeupDescription {
-  color: #a1a1aa;
+  color: #ccccd5;
   font-size: 0.9rem;
   max-width: 300px;
   line-height: 1.6;
@@ -63,7 +63,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: rgba(6, 16, 212, 0.6);
+  color: #0639d4;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;

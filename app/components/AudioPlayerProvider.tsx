@@ -101,16 +101,24 @@ export const AudioProvider = ({ children}:any) => {
     }
     const updateFavoriteStatus = (songId: number, isFavorite: boolean) => {
     if (currentSong.id === songId) {
-      setCurrentSong(prev => ({ ...prev, isFavorite }));
+    setCurrentSong(prev => ({ ...prev, isFavorite }));
+  }
+  setSongs(prevSongs => {
+    if (!isFavorite) {
+      return prevSongs.filter(s => s.id !== songId);
     }
-    setSongs(prevSongs => {
-    if (isFavorite) {
-      const exists = prevSongs.find(s => s.id === songId);
-      if (!exists && currentSong.id === songId) {
-        return [...prevSongs, { ...currentSong, isFavorite: true }];
-      }
-      return prevSongs;}
-    return prevSongs.filter(s => s.id !== songId);
+    const exists = prevSongs.find(s => s.id === songId);
+    if (!exists) {
+    if (!exists && currentSong.id === songId) {
+      return [...prevSongs, { 
+        ...currentSong, 
+        isFavorite: true,
+        createdAt: currentSong.createdAt || new Date().toISOString() 
+      }];
+    }
+    }
+
+    return prevSongs.map(s => s.id === songId ? { ...s, isFavorite: true } : s);
   });
   }
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Play, Clock, MoreHorizontal, Shuffle, Plus, Loader2 } from 'lucide-react';
+import { Heart, Play, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Song, useAudio } from '@/app/components/AudioPlayerProvider';
 import styles from './favorites.module.css';
@@ -13,45 +13,37 @@ interface Props {
 export default function FavoriteSongsClientContent({ songs: initialSongs, username: currentUser }: Props) {
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
+  const [hasHydrated, setHasHydrated] = useState(false);
   
-  // 1. Get globalSongs (the live list) from the AudioProvider
   const { playSong, currentSong, upSongs, updateFavoriteStatus, songs: globalSongs } = useAudio();
 
-  // 2. When the page first loads, upload the initial songs to the Provider
   useEffect(() => {
-    if (initialSongs && initialSongs.length > 0) {
+    if (initialSongs) {
       upSongs(initialSongs);
+      setHasHydrated(true);
     }
-  }, [initialSongs]); // Runs only when initialSongs changes
+  }, [initialSongs]);
 
   const handleRemoveFavorite = async (songId: number) => {
-    setLoading(true);
+    updateFavoriteStatus(songId, false);
+
     try {
-      const response = await fetch('/api/favorite/del', {
+      await fetch('/api/favorite/del', {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         credentials: 'include',
         body: JSON.stringify({ songId })
       });
-
-      if (response.ok) {
-        // 3. This call now removes the song from the Provider's 'songs' array
-        // Because this page is watching 'globalSongs', it will vanish instantly!
-        updateFavoriteStatus(songId, false);
-      }
     } catch (err) {
       console.error("Delete failed", err);
     }
-    setLoading(false);
   };
 
   const onPlay = (song: Song) => {
-    // We play from globalSongs to ensure the queue is consistent
     playSong(song);
   };
 
-  // 4. Use globalSongs for rendering. If it's empty initially, fall back to initialSongs
-  const displaySongs = globalSongs.length > 0 ? globalSongs : initialSongs;
+  const displaySongs = hasHydrated ? globalSongs : initialSongs;
 
   return (
     <div className={styles.container}>
@@ -88,7 +80,7 @@ export default function FavoriteSongsClientContent({ songs: initialSongs, userna
           </div>
         )}
 
-        {displaySongs.length === 0 && !loading ? (
+        {displaySongs.length === 0 && hasHydrated ? (
           <h2 style={{ textAlign: 'center', marginTop: '2rem' }}>You did not like any song yet</h2>
         ) : (
           displaySongs.map((song, index) => {
@@ -122,7 +114,7 @@ export default function FavoriteSongsClientContent({ songs: initialSongs, userna
                     className={isHovered ? styles.visible : styles.hidden}
                     onClick={(e) => { e.stopPropagation(); handleRemoveFavorite(song.id); }}
                   >
-                    <Heart size={16} fill="#be00b8" />
+                    <Heart size={16} fill="#0066ff" />
                   </button>
                   <span className={styles.duration}>{song.artist}</span>
                 </div>

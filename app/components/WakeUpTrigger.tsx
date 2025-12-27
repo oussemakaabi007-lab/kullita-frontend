@@ -50,7 +50,7 @@ export default function WakeUpTrigger() {
       <p className={styles.wakeupDescription}>
         {showSlowMessage 
           ? "Almost there! The server is waking up, just give it a min" 
-          : ""}
+          : "Hello there if the server lags is not from the app"}
       </p>
 
       <div className={styles.statusIndicator}>
