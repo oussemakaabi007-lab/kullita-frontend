@@ -16,13 +16,16 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
   const [modalSongs, setModalSongs] = useState<any[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [loadingSongs, setLoadingSongs] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const closeModals = () => {
     setModalMode(null);
     setActivePlaylist(null);
     setInputValue("");
     setModalSongs([]);
+    setError(null);
   };
+
   const handleOpenManagementModal = async (playlist: any) => {
     setLoadingSongs(true);
     setActivePlaylist(playlist);
@@ -43,6 +46,7 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
       setLoadingSongs(false);
     }
   };
+
   const handleQuickPlay = async (playlist: any) => {
     setLoadingSongs(true);
     try {
@@ -71,6 +75,7 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
       setLoadingSongs(false);
     }
   };
+
   const handleRemoveSong = async (songId: number) => {
     if (!songId) return;
     try {
@@ -90,7 +95,11 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
   };
 
   const handleCreate = async () => {
-    if (!inputValue.trim()) return;
+    if (!inputValue.trim()) {
+      setError("Please enter a playlist name");
+      return;
+    }
+    setError(null);
     try {
       await fetch('/api/playlist/create', {
         method: "POST",
@@ -104,7 +113,11 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
   };
 
   const handleEdit = async () => {
-    if (!inputValue.trim()) return;
+    if (!inputValue.trim()) {
+      setError("Name cannot be empty");
+      return;
+    }
+    setError(null);
     try {
       await fetch('/api/playlist/edit', {
         method: "PATCH",
@@ -195,11 +208,11 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
               {modalMode === 'view' ? (
                 <div className={styles.songList}>
                   {loadingSongs ?  (
-        <div className={styles.miniLoader}>
-          <Loader2 className="animate-spin" size={24} />
-          <span>Loading songs...</span>
-        </div>
-      ) :modalSongs.length > 0 ? (
+                    <div className={styles.miniLoader}>
+                      <Loader2 className="animate-spin" size={24} />
+                      <span>Loading songs...</span>
+                    </div>
+                  ) : modalSongs.length > 0 ? (
                     modalSongs.map((song) => (
                       <div key={song.id} className={styles.songItem}>
                         <div className={styles.songMainInfo}>
@@ -227,9 +240,7 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
                     ))
                   ) : (
                     <div className={styles.emptyStateContainer}>
-                      
                       <p className={styles.emptyMsg}>This playlist is empty.</p>
-                      
                     </div>
                   )}
                 </div>
@@ -245,10 +256,14 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
                     type="text" 
                     className={styles.modalInput}
                     value={inputValue} 
-                    onChange={(e) => setInputValue(e.target.value)} 
+                    onChange={(e) => {
+                        setInputValue(e.target.value);
+                        if (error) setError(null);
+                    }} 
                     placeholder="My playlist"
                     autoFocus 
                   />
+                  {error && <span className={styles.errorMessage}>{error}</span>}
                 </div>
               )}
             </div>

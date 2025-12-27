@@ -21,11 +21,9 @@ export default function PlaylistCard({ name, onClick, onPlay, onDelete, onEdit }
         {firstLetter}
       </div>
       <div className={styles.overlay} />
+      
       <div className={styles.content}>
-        <div className={styles.info}>
-          <h4 className={styles.name}>{name}</h4>
-          
-        </div>
+        <h4 className={styles.name}>{name}</h4>
 
         <div className={styles.actions}>
           <button 
@@ -42,14 +40,14 @@ export default function PlaylistCard({ name, onClick, onPlay, onDelete, onEdit }
               onClick={(e) => { e.stopPropagation(); onEdit(); }}
               aria-label="Edit"
             >
-              <Edit2 size={18} />
+              <Edit2 size={16} />
             </button>
             <button 
-              className={styles.iconBtn} 
+              className={`${styles.iconBtn} ${styles.deleteBtn}`} 
               onClick={(e) => { e.stopPropagation(); onDelete(); }}
               aria-label="Delete"
             >
-              <Trash2 size={18} />
+              <Trash2 size={16} />
             </button>
           </div>
         </div>
