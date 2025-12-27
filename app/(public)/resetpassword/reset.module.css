@@ -10,7 +10,7 @@
     width: 100%;
     max-width: 400px;
     padding: 40px;
-    background-color: #121212;
+    background-color: #090b0f;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -82,7 +82,7 @@
 
 .inputField:focus {
     background-color: #333333;
-    border-color: #be00b8;
+    border-color: #0066ff;
     outline: none;
 }
 
@@ -102,7 +102,7 @@
     width: 100%;
     padding: 14px;
     border: none;
-    background-color: #be00b8;
+    background-color: #0059df;
     color: #ffffff;
     border-radius: 50px;
     font-size: 1rem;
@@ -112,7 +112,7 @@
 }
 
 .submitBtn:hover {
-    background-color: #d400cc;
+    background-color: #0066ff;
     transform: scale(1.02);
 }
 @media(max-width: 650px) {
@@ -134,7 +134,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ff0073;
+  color: #0066ff;
   font-weight: 500;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 1000;

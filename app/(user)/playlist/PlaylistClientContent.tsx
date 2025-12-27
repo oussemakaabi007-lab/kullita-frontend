@@ -227,9 +227,9 @@ export default function PlaylistClientContent({ playlists: initialPlaylists, use
                     ))
                   ) : (
                     <div className={styles.emptyStateContainer}>
-                      <Music size={48} className={styles.emptyIcon} />
+                      
                       <p className={styles.emptyMsg}>This playlist is empty.</p>
-                      <button onClick={closeModals} className={styles.addMoreBtn}>Add some music</button>
+                      
                     </div>
                   )}
                 </div>

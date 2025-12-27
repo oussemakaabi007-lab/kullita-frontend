@@ -13,12 +13,14 @@ function ThisWeek() {
   const [weeklySongs, setWeeklySongs] = useState<Song[]>([]);
   const { playSong, currentSong, upSongs } = useAudio();
   const [loading, setLoading] = useState(false);
-  const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const loaderRef = useRef<HTMLDivElement | null>(null);
+  
+  // Use a ref to track if initial fetch has happened to prevent double-firing in Strict Mode
+  const initialFetchDone = useRef(false);
 
   const fetchWeeklySongs = useCallback(async (currentOffset: number) => {
-    if (loading || !hasMore) return;
+    if (loading || (!hasMore && currentOffset !== 0)) return;
 
     setLoading(true);
     try {
@@ -36,30 +38,41 @@ function ThisWeek() {
       }
 
       setWeeklySongs(prev => {
-        const newItems = data.filter(
-          (newItem) => !prev.some((oldItem) => oldItem.id === newItem.id)
-        );
-        return [...prev, ...newItems];
+        // Only append songs that aren't already in the list
+        const existingIds = new Set(prev.map(s => s.id));
+        const newItems = data.filter(newItem => !existingIds.has(newItem.id));
+        return currentOffset === 0 ? data : [...prev, ...newItems];
       });
-      setOffset(prev => prev + LIMIT);
     } catch (err: any) {
       console.error(err.message || "An error occurred fetching weekly songs.");
     } finally {
       setLoading(false);
     }
   }, [loading, hasMore]);
-  useEffect(() => {
-    fetchWeeklySongs(0);
-  }, []);
 
+  // Initial fetch on mount ONLY
+  useEffect(() => {
+    if (!initialFetchDone.current) {
+      fetchWeeklySongs(0);
+      initialFetchDone.current = true;
+    }
+  }, []); // Empty dependency array is safe here because we use refs
+
+  // Observer for infinite scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && hasMore && !loading) {
-          fetchWeeklySongs(offset);
+        const target = entries[0];
+        // Only fetch if intersecting, not already loading, and we actually have data
+        if (target.isIntersecting && hasMore && !loading && weeklySongs.length >= LIMIT) {
+          fetchWeeklySongs(weeklySongs.length);
         }
       },
-      { threshold: 0.1 }
+      { 
+        root: null, // Relative to viewport
+        rootMargin: '400px', // Fetch earlier so user doesn't see the loader as much
+        threshold: 0.1 
+      }
     );
 
     if (loaderRef.current) {
@@ -67,7 +80,7 @@ function ThisWeek() {
     }
 
     return () => observer.disconnect();
-  }, [offset, hasMore, loading, fetchWeeklySongs]);
+  }, [hasMore, loading, weeklySongs.length, fetchWeeklySongs]);
 
   return (
     <div className={styles.appContainer}>
@@ -108,20 +121,22 @@ function ThisWeek() {
               ))}
             </div>
           )}
-          <div ref={loaderRef} className={styles.sentinel} style={{ height: '50px', margin: '20px 0' }}>
+          
+          <div ref={loaderRef} style={{ height: '60px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {loading && (
-              <div className={styles.miniLoader}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ccc' }}>
                 <Loader2 className="animate-spin" size={24} />
-                <span>Loading songs...</span>
+                <span>please wait...</span>
               </div>
             )}
             {!hasMore && weeklySongs.length > 0 && (
-              <p className={styles.sentinel}>
+              <p style={{ color: '#666', fontSize: '14px' }}>
                 You've reached the end of this week's hits!
               </p>
             )}
           </div>
         </div>
+        <div className={styles.playerSafeSpace} />
       </main>
     </div>
   );

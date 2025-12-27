@@ -17,12 +17,13 @@ function Trending() {
   const [trendingSongs, setTrendingSongs] = useState<Song[]>([]);
   const { playSong, currentSong, upSongs } = useAudio();
   const [loading, setLoading] = useState(false);
-  const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const observerTarget = useRef(null);
+  const observerTarget = useRef<HTMLDivElement | null>(null);
+  const initialFetchDone = useRef(false);
   const limit = 10;
+
   const fetchTrendingSongs = useCallback(async (currentOffset: number) => {
-    if (loading || !hasMore) return;
+    if (loading || (!hasMore && currentOffset !== 0)) return;
 
     setLoading(true);
     try {
@@ -34,33 +35,43 @@ function Trending() {
 
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data: MusicData = await response.json();
+      
       if (data.items.length < limit) {
         setHasMore(false);
       }
 
-      setTrendingSongs(prev =>  {const newItems = data.items.filter(
-    (newItem) => !prev.some((oldItem) => oldItem.id === newItem.id)
-  );
-  return [...prev, ...newItems];});
-      setOffset(prev => prev + limit);
+      setTrendingSongs(prev => {
+        const existingIds = new Set(prev.map(s => s.id));
+        const newItems = data.items.filter(newItem => !existingIds.has(newItem.id));
+        return currentOffset === 0 ? data.items : [...prev, ...newItems];
+      });
     } catch (err: any) {
       console.error(err.message || "An error occurred fetching trending songs.");
     } finally {
       setLoading(false);
     }
   }, [loading, hasMore]);
+
   useEffect(() => {
-    fetchTrendingSongs(0);
+    if (!initialFetchDone.current) {
+      fetchTrendingSongs(0);
+      initialFetchDone.current = true;
+    }
   }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && hasMore && !loading) {
-          fetchTrendingSongs(offset);
+        const target = entries[0];
+        if (target.isIntersecting && hasMore && !loading && trendingSongs.length >= limit) {
+          fetchTrendingSongs(trendingSongs.length);
         }
       },
-      { threshold: 0.1 }
+      { 
+        root: null,
+        rootMargin: '400px',
+        threshold: 0.1 
+      }
     );
 
     if (observerTarget.current) {
@@ -68,7 +79,7 @@ function Trending() {
     }
 
     return () => observer.disconnect();
-  }, [offset, hasMore, loading, fetchTrendingSongs]);
+  }, [hasMore, loading, trendingSongs.length, fetchTrendingSongs]);
 
   return (
     <div className={styles.appContainer}>
@@ -109,18 +120,19 @@ function Trending() {
               ))}
             </div>
           )}
-          <div ref={observerTarget} style={{ height: '50px', margin: '20px 0' }}>
+          <div ref={observerTarget} style={{ height: '60px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
              { loading && (
-        <div className={styles.miniLoader}>
-          <Loader2 className="animate-spin" size={24} />
-          <span>Loading songs...</span>
-        </div>
-      )}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ccc' }}>
+                  <Loader2 className="animate-spin" size={24} />
+                  <span>please wait...</span>
+                </div>
+              )}
             {!hasMore && trendingSongs.length > 0 && (
-              <p style={{ textAlign: 'center', opacity: 0.5 }}>You've seen all the top hits!</p>
+              <p style={{ color: '#666', fontSize: '14px' }}>You've seen all the top hits!</p>
             )}
           </div>
         </div>
+        <div className={styles.playerSafeSpace} />
       </main>
     </div>
   );

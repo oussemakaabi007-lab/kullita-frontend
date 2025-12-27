@@ -10,7 +10,7 @@
     width: 100%;
     max-width: 400px;
     padding: 35px;
-    background-color: #121212;
+    background-color: #090b0f;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ff0073;
+  color: #0066ff;
   font-weight: 500;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -95,7 +95,7 @@
     font-size: 1rem;
 }
 
-.inputField:focus { border-color: #be00b8; outline: none; }
+.inputField:focus { border-color: #0066ff; outline: none; }
 
 .submitBtn {
     cursor: pointer;
@@ -104,7 +104,7 @@
     justify-content: center;
     width: 100%;
     padding: 14px;
-    background-color: #be00b8;
+    background-color: #0059df;
     color: #ffffff;
     border: none;
     border-radius: 50px;

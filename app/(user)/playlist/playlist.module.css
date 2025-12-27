@@ -4,10 +4,15 @@
     grid-template-areas: "menu main";
     grid-template-columns: 230px 1fr; 
     height: 100vh;
-    background-color: #000; 
+    background-color: #090b0f; 
     color: #fff; 
-    
+    padding-bottom: 10px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.playerSafeSpace {
+  height: 120px;
+  width: 100%;
+  pointer-events: none;
 }
 @media (max-width: 650px) {
  .appContainer {
@@ -16,7 +21,7 @@
     grid-template-areas: "menu" "main";
     grid-template-rows: 60px 1fr; 
     height: 100vh;
-    background-color: #000; 
+    background-color: #090b0f; 
     color: #fff; 
     
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -28,7 +33,7 @@
    width: 100vw;
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    background: #090b0f;
     
 }
 
@@ -40,7 +45,7 @@
 .mainContent {
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    background: #090b0f;
     position: relative;
     scrollbar-width: 0;
 }
@@ -68,12 +73,6 @@
 .container::-webkit-scrollbar {
   display: none;
 }
-
-.header {
-  background: linear-gradient(to bottom, #f72096, #121212);
-  padding: 2rem;
-}
-
 .headerTitle {
   font-size: 3rem;
   font-weight: 700;
@@ -95,7 +94,7 @@
   align-items: flex-end;
   gap: 24px;
   padding: 32px;
-  background: linear-gradient(to bottom, #e200ad, #121212);
+  background: linear-gradient(to bottom, #2E79FF, #0d254f);
 }
 .title{
     font-size: 1.5rem;
@@ -106,14 +105,14 @@
 .coverArt {
   width: 240px;
   height: 240px;
-  background: linear-gradient(to bottom, #d11683, #540c38);
+ background: linear-gradient(to top, #2E79FF, #0d254f);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 60px rgba(0,0,0,.5);
 }
 .createCard {
-  background-color: #0b0b0b;
+  background-color:  #282828;
   border-radius: 8px;
   padding: 1.5rem;
   cursor: pointer;
@@ -121,14 +120,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  
   width: 100%; 
   box-sizing: border-box; 
-  
-  
   aspect-ratio: 1 / 1; 
-  
   transition: background-color 0.3s ease;
   overflow: hidden; 
 }
@@ -144,7 +138,7 @@
 }
 
 .createCard:hover {
-  background-color: #282828;
+  background-color: #104698;
 }
 
 .plusIconWrapper {
@@ -197,18 +191,6 @@
     margin-bottom: 8px;
   }
 
-  .headerTitle {
-    font-size: 2rem;
-    text-align: center;
-  }
-
-  .header {
-    padding: 1.5rem;
-  }
-
-  .content {
-    padding: 1rem;
-  }
 
   .grid {
     
@@ -247,7 +229,7 @@
 
 
 .modalContent {
-  background-color: #282828;
+  background-color: #090b0f;
   width: 100%;
   max-width: 400px;
   border-radius: 12px;
@@ -302,7 +284,7 @@
 }
 
 .modalBody input:focus {
-  border-color: #be00b8;
+  border-color: #2E79FF;
 }
 
 .modalFooter {
@@ -329,12 +311,12 @@
 }
 
 .confirmBtn {
-  background-color: #be00b8;
+  background-color: #2E79FF;
   color: white;
 }
 
 .confirmBtn:hover {
-  background-color: #d400ce;
+  background-color: #166bff;
   transform: scale(1.04);
 }
 
@@ -374,7 +356,7 @@
 
 .modalBody input {
   width: 100%;
-  background-color: #3e3e3e;
+  background-color: #10131b;
   border: 1px solid transparent;
   border-radius: 4px;
   padding: 12px;
@@ -383,7 +365,8 @@
 }
 
 .modalBody input:focus {
-  border-color: #be00b8;
+  border-color: #2E79FF;
+  background-color: #090b0f;
   outline: none;
 }
 .largeModal {
@@ -405,14 +388,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    background-color: #1e1e1e;
+    background-color: #10131b;
     border-radius: 8px;
     border: 1px solid transparent;
     transition: all 0.2s ease;
 }
 
 .songItem:hover {
-    background-color: #2a2a2a;
+    background-color: #090b0f;
     border-color: #333;
 }
 
@@ -445,7 +428,7 @@
 }
 
 .playSongInnerBtn {
-    background: #be00b8;
+    background: #2E79FF;
     border: none;
     color: white;
     width: 32px;
@@ -478,7 +461,7 @@
 .modalInput {
     width: 100%;
     padding: 12px;
-    background: #2a2a2a;
+    background: #090b0f;
     border: 1px solid #333;
     border-radius: 4px;
     color: white;
@@ -504,14 +487,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ff0073;
+  color: #0066ff;
   font-weight: 500;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 @media (max-width:650px){
   .playSongInnerBtn {
-    background: #be00b8;
+    background: #2E79FF;
     border: none;
     color: white;
     width: 32px;

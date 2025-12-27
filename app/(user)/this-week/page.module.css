@@ -4,13 +4,17 @@
     grid-template-areas: "menu main";
     grid-template-columns: 230px 1fr; 
     height: 100vh;
-    background-color: #000; 
+    background-color: #090b0f;
     color: #fff; 
     
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 .mainContent::-webkit-scrollbar{
     display: none;
+}.playerSafeSpace {
+  height: 120px;
+  width: 100%;
+  pointer-events: none;
 }
 .miniLoader {
   position: fixed;
@@ -25,7 +29,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ff0073;
+  color: #0066ff;
   font-weight: 500;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -33,7 +37,7 @@
 .mainContent {
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    background-color: #090b0f; 
     position: relative;
     scrollbar-width: 0;
 }
@@ -60,7 +64,7 @@
   align-items: flex-end;
   gap: 24px;
   padding: 32px;
-  background: linear-gradient(to bottom, #e200ad, #121212);
+  background: linear-gradient(to bottom, #2E79FF, #0d254f);
 }
 .title{
     font-size: 1.5rem;
@@ -71,7 +75,7 @@
 .coverArt {
   width: 240px;
   height: 240px;
-  background: linear-gradient(to bottom, #d11683, #540c38);
+  background: linear-gradient(to top, #2E79FF, #0d254f);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,7 +115,7 @@
     grid-template-areas: "menu" "main";
     grid-template-rows: 60px 1fr; 
     height: 100vh;
-    background-color: #000; 
+    background-color: #090b0f;
     color: #fff; 
     
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -123,6 +127,7 @@
    width: 100vw;
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    background-color: #090b0f;
+     position: relative;
 }
 }

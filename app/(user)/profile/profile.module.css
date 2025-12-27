@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ff0073;
+  color: #0066ff;
   font-weight: 500;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -38,7 +38,7 @@
 }
 
 .settingsSection {
-    background: #181818;
+    background: #0e1117;
     padding: 30px;
     border-radius: 12px;
     margin-bottom: 24px;
@@ -97,7 +97,7 @@
 
 .fieldInput {
     background: #282828;
-    border: 1px solid #be00b8;
+    border: 1px solid #0278d8;
     color: white;
     padding: 8px 12px;
     border-radius: 4px;
@@ -138,13 +138,13 @@
 }
 
 .formGroup input:focus {
-    border-color: #be00b8;
+    border-color: #0278d8;
     outline: none;
 }
 
 .savePasswordBtn {
-    background: rgb(255, 0, 144);
-    color: black;
+    background: #0278d8;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 12px 24px;
     border-radius: 50px;

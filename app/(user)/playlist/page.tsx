@@ -46,8 +46,11 @@ export default async function PlaylistPage() {
     <Header />
     <div className={styles.contentPadding}>
         <PlaylistClientContent playlists={playlists} user={user} />
+         
     </div>
+    <div className={styles.playerSafeSpace} />
      </main>
+    
   </div>
   );
 }

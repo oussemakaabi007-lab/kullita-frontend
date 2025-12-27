@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #0a0a0a;
+  background-color: #090b0f;  
   color: #ffffff;
   font-family: sans-serif;
   text-align: center;
@@ -15,7 +15,7 @@
 .wakeupGlow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(109, 13, 93, 0.15) 0%, rgba(255, 0, 115, 0) 70%);
+  background: radial-gradient(circle, rgba(13, 13, 109, 0.15) 0%, rgba(0, 17, 255, 0) 70%);
   filter: blur(80px);
   pointer-events: none;
 }
@@ -30,7 +30,7 @@
 
 .bar {
   width: 8px;
-  background-color: #d8006c;
+  background-color: #0066ff;
   border-radius: 4px;
   animation: bounce 1s ease-in-out infinite;
 }
@@ -48,7 +48,7 @@
 }
 
 .wakeupTitle span {
-  color: #ff0088;
+  color: #0066ff;
 }
 
 .wakeupDescription {
@@ -63,7 +63,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: rgba(212, 6, 99, 0.6);
+  color: rgba(6, 16, 212, 0.6);
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
@@ -74,7 +74,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid rgba(60, 9, 31, 0.2);
-  border-top-color: #d40685;
+  border-top-color: #0639d4;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

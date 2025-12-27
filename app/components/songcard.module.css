@@ -76,7 +76,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    color: #ce006a;
+    color: #2E79FF;
     transform: translate(-50%, -100%); 
     opacity: 0;
     transition: all 0.3s ease;
@@ -118,7 +118,7 @@
 .box {
   width: 3px;
   height: 100%;
-  background: #be00b8;
+  background: #2E79FF;
   border-radius: 1px;
   transform-origin: bottom;
   animation: normal 1.2s infinite;
@@ -149,7 +149,7 @@
 .box {
   width: 4px;
   height: 100%;
-  background: var(--color-accent-primary, #be00b8);
+  background: #2E79FF;
   border-radius: 2px;
   transform-origin: bottom; 
   transition: background 0.3s ease;

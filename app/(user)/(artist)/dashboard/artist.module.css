@@ -5,7 +5,7 @@
     grid-template-areas: "menu main";
     grid-template-columns: 240px 1fr; 
     height: 100vh;
-    background-color: #000; 
+   background-color: #090b0f;
     color: #fff; 
     
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -18,7 +18,7 @@
 .mainContent {
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    background-color: #090b0f;
     position: relative;
     scrollbar-width: 0;
 }
@@ -50,7 +50,7 @@
     grid-template-areas: "menu" "main";
     grid-template-rows: 60px 1fr; 
     height: 100vh;
-    background-color: #000; 
+    background-color: #090b0f;
     color: #fff; 
     
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -62,7 +62,7 @@
    width: 100vw;
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    background-color: #090b0f;
     
 }
 .contentPadding {
@@ -84,13 +84,13 @@
 }
 
 .statCard {
-  background: #181818;
+  background: #010c1d;
   padding: 24px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 20px;
-  border: 1px solid #282828;
+  border: 1px solid #1c3461;
 }
 
 .statLabel { color: #b3b3b3; font-size: 0.85rem; margin-bottom: 4px; }
@@ -113,8 +113,8 @@
 
 .actionCard {
   flex: 1;
-  background: #be00b81a;
-  border: 1px dashed #be00b8;
+  background: #011027;
+  border: 1px dashed #0066ff;;
   color: white;
   padding: 30px;
   border-radius: 12px;
@@ -126,7 +126,7 @@
   transition: 0.2s;
 }
 
-.actionCard:hover { background: #be00b833; }
+.actionCard:hover { background: #001c45; }
 
 @media (max-width: 900px) {
   .topSongsGrid { grid-template-columns: 1fr; }
@@ -140,13 +140,13 @@
 
 .bestTrackCard {
   flex: 0 1 33.33%;
-  max-width: 400px;
+  max-width: 350px;
   width: 100%;
   position: relative;
-  background: linear-gradient(180deg, #1e1e1e 0%, #121212 100%);
+  background: transparent;
   padding: 24px;
   border-radius: 20px;
-  border: 1px solid #282828;
+  border: 1px solid #0066ff;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   flex-direction: column;
@@ -159,8 +159,8 @@
   left: 20px;
   font-size: 1.5rem;
   font-weight: 900;
-  color: #eb015b;
-  opacity: 0.5;
+  color: #0066ff;
+  opacity: 0.8;
   z-index: 1000;
   font-style: italic;
 }
@@ -211,8 +211,8 @@
 
 .bestTrackCard:hover {
   transform: translateY(-10px);
-  border-color: #be00b8;
-  background: #1a1a1a;
+  border-color: #0066ff;
+  background: #131c338b;
 }
 
 .bestTrackCard:hover .bestOverlay {
@@ -260,7 +260,7 @@
 }
 
 .modalContent {
-  background: #181818;
+  background: #0b0d12;
   width: 100%;
   max-width: 500px;
   padding: 32px;
@@ -301,7 +301,7 @@
 }
 
 .inputGroup input {
-  background: #282828;
+  background: #0b0d12;
   border: 1px solid #333;
   padding: 12px;
   border-radius: 8px;
@@ -310,7 +310,7 @@
 }
 
 .inputGroup input:focus {
-  border-color: #be00b8;
+  border-color: #0066ff;
 }
 
 .modalActions {
@@ -332,7 +332,7 @@
 
 .submitBtn {
   flex: 2;
-  background: #be00b8;
+  background: #0066ff;
   color: #fff;
   border: none;
   padding: 12px;
@@ -363,23 +363,9 @@
   height: 1px;
   pointer-events: none;
 }
-.customUploadBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
-  background: #222;
-  border: 2px dashed #333;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
-  min-height: 140px;
-}
 
 .uploadIcon {
-  color: #be00b8;
+  color: #0066ff;
   margin-bottom: 12px;
   opacity: 0.8;
 }
@@ -418,7 +404,7 @@
     align-items: center;
     justify-content: center;
     padding: 24px 10px;
-    background: #222;
+    background: #0b0d12;
     border: 2px dashed #333;
     border-radius: 12px;
     cursor: pointer;

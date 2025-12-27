@@ -91,7 +91,7 @@ export function UploadNewSongModal({ onClose, onSuccess }: UploadModalProps) {
                 className={styles.hiddenInput} 
                 onChange={(e) => setAudioFile(e.target.files?.[0] || null)} 
               />
-              <Music size={24} color="#be00b8" />
+              <Music size={24} color="#0066ff" />
               <span>{audioFile ? audioFile.name : "Select Audio"}</span>
             </label>
             <label className={styles.customUploadBox}>
@@ -101,7 +101,7 @@ export function UploadNewSongModal({ onClose, onSuccess }: UploadModalProps) {
                 className={styles.hiddenInput} 
                 onChange={(e) => setCoverFile(e.target.files?.[0] || null)} 
               />
-              <Upload size={24} color="#be00b8" />
+              <Upload size={24} color="#0066ff" />
               <span>{coverFile ? coverFile.name : "Select Cover"}</span>
             </label>
           </div>

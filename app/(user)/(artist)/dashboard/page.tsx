@@ -80,21 +80,21 @@ export default function Dashboard() {
 
           <section className={styles.statsGrid}>
             <div className={styles.statCard}>
-              <Users color="#be00b8" size={32} />
+              <Users color="#0066ffff" size={32} />
               <div>
                 <p className={styles.statLabel}>Total Listeners</p>
                 <h3 className={styles.statValue}>{stats.totalListeners.toLocaleString()}</h3>
               </div>
             </div>
             <div className={styles.statCard}>
-              <PlayCircle color="#be00b8" size={32} />
+              <PlayCircle color="#0066ffff" size={32} />
               <div>
                 <p className={styles.statLabel}>Total Streams</p>
                 <h3 className={styles.statValue}>{stats.totalPlays.toLocaleString()}</h3>
               </div>
             </div>
             <div className={styles.statCard}>
-              <TrendingUp color="#1db954" size={32} />
+              <TrendingUp color="#0066ffff" size={32} />
               <div>
                 <p className={styles.statLabel}>Growth</p>
                 <h3 className={styles.statValue}>{growth}%</h3>
@@ -118,7 +118,7 @@ export default function Dashboard() {
                     />
                     <div className={styles.bestOverlay}>
                       <div className={styles.bestOverlayContent}>
-                        <PlayCircle size={32} color="#be00b8" />
+                        <PlayCircle size={32} color="#0066ffff" />
                         <span className={styles.playCountText}>
                           {song.listenCount?.toLocaleString()} Plays
                         </span>
@@ -136,7 +136,7 @@ export default function Dashboard() {
             <h3>Quick Actions</h3>
             <div className={styles.actionGrid}>
               <button className={styles.actionCard} onClick={() => setIsModalOpen(true)}>
-                <PlusCircle size={28} color="#be00b8" />
+                <PlusCircle size={28} color="#0066ffff" />
                 <span>Upload New Track</span>
               </button>
             </div>

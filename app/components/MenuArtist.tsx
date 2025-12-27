@@ -31,15 +31,15 @@ function MenuArtist() {
       </div>
       <nav className={styles.nav}>
         <Link 
-          href="/" 
-          className={`${styles.navBtn} ${getActiveClass('/')}`}
+          href="/dashboard" 
+          className={`${styles.navBtn} ${getActiveClass('/dashboard')}`}
         >
           <LayoutDashboard  size={24} />
           <span>Dashboard</span>
         </Link>
         <Link 
           href="/mysongs" 
-          className={`${styles.navBtn} ${getActiveClass('/search')}`}
+          className={`${styles.navBtn} ${getActiveClass('/mysongs')}`}
         >
           <Music  size={24} />
           <span>Your songs</span>

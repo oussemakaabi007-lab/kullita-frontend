@@ -49,7 +49,7 @@ export default function WakeUpTrigger() {
       
       <p className={styles.wakeupDescription}>
         {showSlowMessage 
-          ? "Almost there! The server is waking up" 
+          ? "Almost there! The server is waking up, just give it a min" 
           : ""}
       </p>
 

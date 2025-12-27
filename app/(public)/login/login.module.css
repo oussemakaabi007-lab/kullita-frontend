@@ -9,7 +9,7 @@
     width: 100%;
     max-width: 400px;
     padding: 40px;
-    background-color: #121212;
+    background-color: #090b0f;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ff0073;
+  color: #0066ff;
   font-weight: 500;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -81,7 +81,7 @@
 }
 .inputField:focus {
     background-color: #333333;
-    border-color: #be00b8;
+    border-color: #0066ff;
     outline: none;
 }
 .eyeBtn {
@@ -113,7 +113,7 @@
     width: 100%;
     padding: 14px;
     border: none;
-    background-color: #be00b8;
+    background-color: #0059df;
     color: #ffffff;
     border-radius: 50px;
     font-size: 1rem;
@@ -122,7 +122,7 @@
     margin-top: 5px;
 }
 .submitBtn:hover {
-    background-color: #d400cc;
+    background-color: #0066ff;
     transform: scale(1.03);
 }
 .divider {
@@ -139,7 +139,7 @@
     font-weight: 600;
 }
 .formLink:hover {
-    color: #be00b8;
+    color: #0066ff;;
 }
 @media screen and (max-width: 650px) {
     .pageWrapper { align-items: flex-start; padding-top: 50px; }

@@ -66,8 +66,8 @@ export default function HomePage() {
      id: 'greeting',
      title: formatGreeting(),
      items: [
-      { id: 1, title: 'Liked Songs', artist: 'Your favorites', coverUrl: 'https://placehold.co/300x300/be00b8/ffffff?text=LI' },
-      { id: 2, title: 'Discover Weekly', artist: 'Your weekly mixtape', coverUrl: 'https://placehold.co/300x300/667eea/ffffff?text=DW' },
+      { id: 1, title: 'Liked Songs', artist: 'Your favorites', coverUrl: 'https://placehold.co/300x300/112f62/ffffff?text=LI' },
+      { id: 2, title: 'Discover Weekly', artist: 'Your weekly mixtape', coverUrl: 'https://placehold.co/300x300/112f62/ffffff?text=DW' },
      ]
     }
   ];
@@ -167,7 +167,9 @@ export default function HomePage() {
         </section>
       ))}
       </div>
+      <div className={styles.playerSafeSpace} />
     </main>
+    
     </div>
   );
 }

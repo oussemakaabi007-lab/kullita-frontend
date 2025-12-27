@@ -4,7 +4,7 @@
     grid-template-areas: "menu main";
     grid-template-columns: 240px 1fr;
     height: 100vh;
-    background-color: #000;
+    background-color: #0b0d12;
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
@@ -16,7 +16,7 @@
 .mainContent {
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    background:#0b0d12;
     position: relative;
     scrollbar-width: 0;
 }
@@ -42,7 +42,7 @@
 }
 
 .addMainBtn { 
-    background: #be00b8; 
+    background: #0066ff;
     color: white; 
     border: none; 
     padding: 12px 24px; 
@@ -56,7 +56,7 @@
 
 
 .songsTable { 
-    background: #181818; 
+    background: #11141c;
     border-radius: 12px; 
     padding: 20px; 
     border: 1px solid #282828; 
@@ -82,7 +82,7 @@
     transition: 0.2s; 
 }
 
-.songRow:hover { background: #282828; }
+.songRow:hover { background: #151924; }
 
 .indexCol { color: #b3b3b3; }
 .titleCol { display: flex; align-items: center; gap: 15px; font-weight: 600; }
@@ -178,7 +178,7 @@
 }
 
 .modalContent {
-    background: #181818;
+    background: #0b0d12;
     width: 100%;
     max-width: 550px;
     padding: 32px;
@@ -213,7 +213,7 @@
 .inputGroup { display: flex; flex-direction: column; gap: 8px; }
 .inputGroup label { color: #b3b3b3; font-size: 0.9rem; font-weight: 600; }
 .inputGroup input {
-    background: #282828;
+    background: #0b0d12;
     border: 1px solid #333;
     padding: 14px;
     border-radius: 10px;
@@ -231,7 +231,7 @@
     align-items: center;
     justify-content: center;
     padding: 24px 10px;
-    background: #222;
+    background: #0b0d12;
     border: 2px dashed #333;
     border-radius: 12px;
     cursor: pointer;
@@ -253,7 +253,7 @@
 
 .submitBtn {
     flex: 2;
-    background: #be00b8;
+    background: #0066ff;
     color: white;
     border: none;
     padding: 12px;
@@ -263,7 +263,7 @@
 }
 
 .deleteModal {
-    background: #181818;
+    background: #0b0d12;
     padding: 32px;
     border-radius: 20px;
     width: 100%;

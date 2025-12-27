@@ -59,6 +59,7 @@ export default async function FavoriteSongsPage() {
     <div className={styles.contentPadding}>
         <FavoriteSongsClientContent songs={favoriteSongs} username={username} />
     </div>
+    <div className={styles.playerSafeSpace} />
      </main>
   </div>
   );

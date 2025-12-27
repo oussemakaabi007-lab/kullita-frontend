@@ -1,39 +1,25 @@
-
-
 .header {
-  
   position: sticky;
+  background-color: #090b0fa2;
+  backdrop-filter: blur(4px);
   top: 0;
-  z-index: 10;
-  
-  
-  
-  background-color: rgba(18, 18, 18, 0.85); 
-  backdrop-filter: blur(4px); 
-  
-  
+  z-index: 100;
   padding: 1.5rem;
-  
-  
   display: flex;
   justify-content: flex-end;
 }
-
 .userProfileContainer {
-  
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
 .profileLink {
-  
   width: 2.5rem; 
   height: 2.5rem; 
   border-radius: 50%; 
   background-color: #333;
-  
-  
+  border: 2px solid #112f62;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,6 +43,6 @@
     right: 0px;
   }
   .profileLink{
-   border: 2px solid rgb(222, 0, 118);
+   border: 2px solid rgb(0, 63, 222);
   }
 }

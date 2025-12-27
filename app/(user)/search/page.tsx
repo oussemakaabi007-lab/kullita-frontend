@@ -105,6 +105,7 @@ export default function SearchPage() {
                         </div>
                     )}
                 </div>
+                <div className={styles.playerSafeSpace} />
             </main>
         </div>
     );

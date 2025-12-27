@@ -2,12 +2,12 @@
 
 .sidebar {
   width: 240px;
-  background-color: #000;
+  background: #05070A;
   display: flex;
   flex-direction: column;
   padding: 1.5rem; 
   position: fixed;
-  height: calc(100vh - 90px);
+  height: 100vh;
   overflow-y: auto;
   
   -ms-overflow-style: none; 
@@ -29,7 +29,7 @@
 .logoIcon {
   width: 2rem; 
   height: 2rem; 
-  background: linear-gradient(to bottom right, #be00b8, #e01a95);
+  background: linear-gradient(to right, #112f62, #2E79FF);
   border-radius: 0.5rem; 
   display: flex;
   align-items: center;
@@ -51,9 +51,6 @@
 .nav {
   margin-bottom: 1.5rem; 
 }
-
-/* The .navBtn class is applied to both <Link> (<a>) and <button> elements. 
-   Using padding, border: none, and background: transparent makes them look uniform. */
 .navBtn {
   display: flex;
   align-items: center;
@@ -82,20 +79,20 @@
 
 
 .active.navBtn {
-  background: linear-gradient(to right, #be00b8, #e01a95);
+  background: linear-gradient(to right, #112f62, #2E79FF);
   color: white;
 }
 
 
 .actionBtn.active {
-  background: linear-gradient(to right, #be00b8, #e01a95);
+  background: linear-gradient(to right, #112f62, #2E79FF);
   color: white;
   
 }
 
 
 .likedBtn.active {
-  background: linear-gradient(to right, #be00b8, #e01a95);
+  background: linear-gradient(to right, #112f62, #2E79FF);
   color: white;
 }
 
@@ -167,7 +164,7 @@
 }
 
 .logoutBtn {
-  margin-top: auto; 
+  
   width: 100%;
   padding: 1rem 0.5rem;
   color: #b3b3b3;
@@ -200,7 +197,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ff0073;
+  color: #0066ff;
   font-weight: 500;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -221,8 +218,6 @@
     overflow-x: auto;    
     overflow-y: hidden;  
     white-space: nowrap; 
-    
-    
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; 
   }
@@ -256,7 +251,7 @@
   .active.navBtn, .actionBtn.active, .likedBtn.active {
     color: white;
     
-    background: linear-gradient(to bottom, #be00b8, #e01a95);
+    background: linear-gradient(to bottom, #112f62, #2E79FF);
     border-radius: 8px;
   }
 

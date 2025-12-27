@@ -5,7 +5,7 @@
     grid-template-areas: "menu main";
     grid-template-columns: 240px 1fr; 
     height: 100vh;
-    background-color: #000; 
+    background-color: #090b0f;; 
     color: #fff; 
     
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -18,7 +18,7 @@
 .mainContent {
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+     background-color: #090b0f;
     position: relative;
     scrollbar-width: 0;
 }
@@ -31,6 +31,11 @@
     font-weight: 600;
     margin-bottom: 16px;
     color: white;
+}
+.playerSafeSpace {
+  height: 120px;
+  width: 100%;
+  pointer-events: none;
 }
 @media (max-width: 650px) {
     .appContainer {
@@ -51,7 +56,7 @@
    width: 100vw;
     grid-area: main;
     overflow-y: auto; 
-    background: linear-gradient(to bottom, #1d1d1d, #121212); 
+    background-color: #090b0f;
     
 }
 }

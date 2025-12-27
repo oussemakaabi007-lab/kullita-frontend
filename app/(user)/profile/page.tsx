@@ -54,6 +54,7 @@ export default async function ProfilePage() {
               
                 <div className={styles.holder}></div>
                 <ProfileClientContent userInfo={userInfo} />
+                <div className={styles.playerSafeSpace} />
             </main>
         </div>
     );

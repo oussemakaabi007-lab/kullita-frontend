@@ -109,7 +109,7 @@ export default function ProfileClientContent({ userInfo }: { userInfo: User }) {
           <div className={styles.contentPadding}>
             <section className={styles.settingsSection}>
               <div className={styles.sectionHeader}>
-                <ShieldCheck size={20} color="#be00b8" />
+                <ShieldCheck size={20} color="#0278d8" />
                 <h2>Basic Information</h2>
               </div>
               
@@ -133,7 +133,7 @@ export default function ProfileClientContent({ userInfo }: { userInfo: User }) {
               )}
             <section className={styles.settingsSection}>
               <div className={styles.sectionHeader}>
-                <Lock size={20} color="#be00b8" />
+                <Lock size={20} color="#0278d8" />
                 <h2>Security</h2>
               </div>
 
