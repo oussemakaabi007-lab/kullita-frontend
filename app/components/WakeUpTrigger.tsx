@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import styles from "./WakeUpTrigger.module.css"; // Note the import change
+import styles from "./WakeUpTrigger.module.css";
 
 export default function WakeUpTrigger() {
   const [isWakingUp, setIsWakingUp] = useState(true);

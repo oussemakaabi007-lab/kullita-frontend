@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Home, Search, Library, Plus, Heart, Play, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { Home, Search, Library, Plus, Heart, Play, ChevronLeft, ChevronRight, Loader2, CalendarDays } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Menu from '@/app/components/Menu'
 import Header from '../components/header';
@@ -105,7 +105,7 @@ export default function HomePage() {
             }}
           >
             <div className={styles.greetingItemCover}>
-            <img src={item.coverUrl} alt={item.title} className={styles.itemImage} />
+              {item.title=='Liked Songs'? <Heart color="white" size={25} fill="white" className={styles.itemImage}/> :<CalendarDays color="white" size={25} className={styles.itemImage} />}
             </div>
             <div className={styles.greetingItemInfo}>
             <h3 className={styles.greetingItemInfoTitle}>{item.title}</h3>

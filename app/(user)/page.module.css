@@ -101,6 +101,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    background: linear-gradient(to bottom, #2E79FF, #0d254f);
 }
 
 .greetingItemInfo {

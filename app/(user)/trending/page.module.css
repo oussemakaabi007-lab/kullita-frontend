@@ -2,7 +2,7 @@
     
     display: grid;
     grid-template-areas: "menu main";
-    grid-template-columns: 230px 1fr; 
+    grid-template-columns: 240px 1fr; 
     height: 100vh;
     background-color: #05070A;
     color: #fff; 

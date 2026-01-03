@@ -15,8 +15,6 @@ function ThisWeek() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const loaderRef = useRef<HTMLDivElement | null>(null);
-  
-  // Use a ref to track if initial fetch has happened to prevent double-firing in Strict Mode
   const initialFetchDone = useRef(false);
 
   const fetchWeeklySongs = useCallback(async (currentOffset: number) => {
@@ -38,7 +36,6 @@ function ThisWeek() {
       }
 
       setWeeklySongs(prev => {
-        // Only append songs that aren't already in the list
         const existingIds = new Set(prev.map(s => s.id));
         const newItems = data.filter(newItem => !existingIds.has(newItem.id));
         return currentOffset === 0 ? data : [...prev, ...newItems];
@@ -49,28 +46,23 @@ function ThisWeek() {
       setLoading(false);
     }
   }, [loading, hasMore]);
-
-  // Initial fetch on mount ONLY
   useEffect(() => {
     if (!initialFetchDone.current) {
       fetchWeeklySongs(0);
       initialFetchDone.current = true;
     }
-  }, []); // Empty dependency array is safe here because we use refs
-
-  // Observer for infinite scroll
+  }, []); 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const target = entries[0];
-        // Only fetch if intersecting, not already loading, and we actually have data
         if (target.isIntersecting && hasMore && !loading && weeklySongs.length >= LIMIT) {
           fetchWeeklySongs(weeklySongs.length);
         }
       },
       { 
-        root: null, // Relative to viewport
-        rootMargin: '400px', // Fetch earlier so user doesn't see the loader as much
+        root: null,
+        rootMargin: '400px', 
         threshold: 0.1 
       }
     );

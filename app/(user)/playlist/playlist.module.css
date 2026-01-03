@@ -1,465 +1,404 @@
 .appContainer {
-    
     display: grid;
     grid-template-areas: "menu main";
-    grid-template-columns: 230px 1fr; 
+    grid-template-columns: 240px 1fr;
     height: 100vh;
-    background-color: #090b0f; 
-    color: #fff; 
-    padding-bottom: 10px;
+    background-color: #090b0f;
+    color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
-.playerSafeSpace {
-  height: 120px;
-  width: 100%;
-  pointer-events: none;
-}
-.errorMessage {
-  color: #ff4444;
-  font-size: 0.85rem;
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    overflow: hidden;
 }
 
-@media (max-width: 650px) {
- .appContainer {
-    
-    display: grid;
-    grid-template-areas: "menu" "main";
-    grid-template-rows: 60px 1fr; 
-    height: 100vh;
-    background-color: #090b0f; 
-    color: #fff; 
-    
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
-.menuContainer {
-     grid-area: menu;
-}
 .mainContent {
-   width: 100vw;
     grid-area: main;
-    overflow-y: auto; 
+    overflow-y: auto;
     background: #090b0f;
-    
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
+.mainContent::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
 }
-.mainContent::-webkit-scrollbar{
+
+.container {
+    flex: 1;
+    overflow-y: auto;
+    color: white;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.container::-webkit-scrollbar {
     display: none;
 }
 
-.mainContent {
-    grid-area: main;
-    overflow-y: auto; 
-    background: #090b0f;
-    position: relative;
-    scrollbar-width: 0;
-}
-.contentPadding {
-    padding: 32px 32px 100px 32px; 
+.header {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    padding: 60px 32px 32px 32px;
+    background: linear-gradient(to bottom, #2E79FF, #0d254f);
 }
 
-.title{
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: white;
-}
-.contentPadding {
-    padding: 0px; 
-}
-.container {
-  flex: 1;
-  overflow-y: auto;
- 
-  color: white;
-}
-
-
-.container::-webkit-scrollbar {
-  display: none;
-}
-.headerTitle {
-  font-size: 3rem;
-  font-weight: 700;
-  margin: 0;
+.coverArt {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(to top, #2E79FF, #0d254f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,.5);
 }
 
 .content {
-  padding: 1.5rem 2rem;
+    padding: 2rem;
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
 }
-.header {
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
-  padding: 32px;
-  background: linear-gradient(to bottom, #2E79FF, #0d254f);
-}
-.title{
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: white;
-}
-.coverArt {
-  width: 240px;
-  height: 240px;
- background: linear-gradient(to top, #2E79FF, #0d254f);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 60px rgba(0,0,0,.5);
-}
+
 .createCard {
-  background-color:  #282828;
-  border-radius: 8px;
-  padding: 1.5rem;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%; 
-  box-sizing: border-box; 
-  aspect-ratio: 1 / 1; 
-  transition: background-color 0.3s ease;
-  overflow: hidden; 
-}
-
-
-.createCard h3 {
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: clamp(0.8rem, 2vw, 1rem); 
-  text-align: center;
-}
-
-.createCard:hover {
-  background-color: #104698;
-}
-
-.plusIconWrapper {
-  width: 4rem;
-  height: 4rem;
-  background-color: #282828;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  color: #b3b3b3;
-  transition: background-color 0.3s ease;
-}
-
-.createCard:hover .plusIconWrapper {
-  background-color: #383838;
-}
-
-.cardTitle {
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.cardSubtitle {
-  font-size: 0.875rem;
-  color: #b3b3b3;
-  text-align: center;
-}
-
-
-@media (max-width: 650px) {
-  .header {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    padding: 20px;
-    gap: 15px;
-  }
-
-  .coverArt {
-    width: 160px; 
-    height: 160px;
-  }
-
-  .title {
-    font-size: 2rem; 
-    margin-bottom: 8px;
-  }
-
-
-  .grid {
-    
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .createCard {
-    padding: 1rem;
-  }
-
-  .plusIconWrapper {
-    width: 3rem;
-    height: 3rem;
-  }
-  
-  .cardTitle {
-    font-size: 0.9rem;
-  }
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 900; 
-  padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 240px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
 }
 
+.viewFullscreen {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
 
 .modalContent {
-  background-color: #090b0f;
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  animation: modalPop 0.2s ease-out;
+    background-color: #181818;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-@keyframes modalPop {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+.fullscreenContent {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    background-color: #090b0f;
+    border: none !important;
 }
 
 .modalHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
 }
 
 .modalHeader h2 {
-  font-size: 1.25rem;
-  margin: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.fullscreenContent .modalHeader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 20px;
+    z-index: 10;
 }
 
 .closeBtn {
-  background: none;
-  border: none;
-  color: #b3b3b3;
-  cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.closeBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .modalBody {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 24px;
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.modalBody label {
-  font-size: 0.875rem;
-  color: #b3b3b3;
+.modalBody::-webkit-scrollbar {
+    display: none;
 }
 
-.modalBody input {
-  background-color: #3e3e3e;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 12px;
-  color: white;
-  outline: none;
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.modalBody input:focus {
-  border-color: #2E79FF;
+.inputGroup label {
+    font-size: 0.85rem;
+    color: #b3b3b3;
+    font-weight: 600;
 }
 
-.modalFooter {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+.modalInput {
+    background: #282828;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 12px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
 }
 
-.cancelBtn, .confirmBtn {
-  padding: 10px 20px;
-  border-radius: 500px; 
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
+.modalInput:focus {
+    border-color: #2E79FF;
 }
 
-.cancelBtn {
-  background: none;
-  color: white;
-}
-
-.cancelBtn:hover {
-  text-decoration: underline;
-}
-
-.confirmBtn {
-  background-color: #2E79FF;
-  color: white;
-}
-
-.confirmBtn:hover {
-  background-color: #166bff;
-  transform: scale(1.04);
-}
-
-.deleteModal {
-  max-width: 350px;
-  border-top: 4px solid #ff4444; 
+.errorMessage {
+    color: #ff4444;
+    font-size: 0.8rem;
 }
 
 .deleteWarning {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    padding: 10px 0;
 }
 
 .deleteWarning p {
-  line-height: 1.5;
-  color: #e0e0e0;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.cancelBtn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+}
+
+.cancelBtn:hover {
+    transform: scale(1.04);
+}
+
+.confirmBtn {
+    background: white;
+    color: black;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 12px 32px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+}
+
+.confirmBtn:hover {
+    transform: scale(1.04);
 }
 
 .deleteBtn {
-  background-color: #ff4444;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 500px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
+    background: #ff4444;
+    color: white;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 12px 32px;
+    border-radius: 50px;
+    transition: transform 0.2s;
 }
 
 .deleteBtn:hover {
-  background-color: #cc0000;
-  transform: scale(1.04);
+    transform: scale(1.04);
 }
 
-
-.modalBody input {
-  width: 100%;
-  background-color: #10131b;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 12px;
-  color: white;
-  margin-top: 5px;
+.viewHeaderSection {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    padding: 60px 40px 30px 40px;
+    background: linear-gradient(to bottom, #1a1a1a, #090b0f);
 }
 
-.modalBody input:focus {
-  border-color: #2E79FF;
-  background-color: #090b0f;
-  outline: none;
+.mainCover {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #0e65fd, #071845);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    flex-shrink: 0;
 }
-.largeModal {
-    max-width: 550px;
-    width: 95%;
+
+.coverLetter {
+    font-size: 80px;
+    font-weight: 800;
+    color: white;
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+}
+
+.playlistTitleText {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin: 0;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.playlistSubtitleText {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: 500;
 }
 
 .songList {
-    max-height: 450px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-right: 8px;
+    padding: 10px 40px;
 }
 
 .songItem {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
-    background-color: #10131b;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    height: 56px;
 }
 
 .songItem:hover {
-    background-color: #090b0f;
-    border-color: #333;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .songMainInfo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+}
+
+.musicIcon {
+    color: #b3b3b3;
+    flex-shrink: 0;
 }
 
 .textContainer {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .songTitle {
     color: #fff;
+    font-size: 1rem;
     font-weight: 500;
-    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .songArtist {
+    font-size: 0.85rem;
     color: #b3b3b3;
-    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .songActions {
     display: flex;
-    gap: 12px;
     align-items: center;
+    gap: 24px;
+    padding-left: 12px;
 }
 
 .playSongInnerBtn {
-    background: #2E79FF;
+    background: transparent;
     border: none;
     color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s;
+    padding: 0;
+    transition: all 0.2s;
 }
 
-.songItem:hover .playSongInnerBtn {
-    opacity: 1;
+.playSongInnerBtn:hover {
+    color: #2E79FF;
+    transform: scale(1.15);
 }
 
 .removeSongBtn {
-    background: none;
+    background: transparent;
     border: none;
-    color: #666;
+    color: #555;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     transition: color 0.2s;
 }
 
@@ -467,52 +406,39 @@
     color: #ff4444;
 }
 
-.modalInput {
-    width: 100%;
-    padding: 12px;
-    background: #090b0f;
-    border: 1px solid #333;
-    border-radius: 4px;
-    color: white;
-    margin-top: 10px;
-}
+@media (max-width: 650px) {
+    .appContainer {
+        grid-template-areas: "menu" "main";
+        grid-template-rows: 60px 1fr;
+        grid-template-columns: 1fr;
+    }
 
-.emptyMsg {
-    text-align: center;
-    color: #b3b3b3;
-    padding: 40px 0;
-    font-style: italic;
-}
-.miniLoader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);;
-  background: rgba(18, 18, 18, 0.9);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 0.75rem 1.25rem;
-  border-radius: 99px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #0066ff;
-  font-weight: 500;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-}
-@media (max-width:650px){
-  .playSongInnerBtn {
-    background: #2E79FF;
-    border: none;
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 1;
-}
+    .modalOverlay {
+        left: 0;
+        top: 60px;
+    }
+
+    .viewHeaderSection {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px 20px 20px;
+        gap: 20px;
+    }
+
+    .infoSection {
+        align-items: center;
+    }
+
+    .playlistTitleText {
+        font-size: 2.2rem;
+    }
+
+    .songList {
+        padding: 0 10px;
+    }
+
+    .songActions {
+        gap: 15px;
+    }
 }
